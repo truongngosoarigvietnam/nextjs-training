@@ -1,6 +1,10 @@
 # README #
 This is a repository for storing the training of Truong Ngo
 
+* Training Git and Linux
+* Training Vuejs
+* Project practice
+
 ## Note for GIT
 * Please help appy GitFlow for this reposioty (https://danielkummer.github.io/git-flow-cheatsheet)
 * Example:
