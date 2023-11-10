@@ -1,0 +1,49 @@
+{
+  "name": "training-project",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-brands-svg-icons": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/vue-fontawesome": "^3.0.3",
+    "@ionic/vue": "^7.0.0-dev.11677608949.16e25264",
+    "@ionic/vue-router": "^7.0.0-dev.11677608949.16e25264",
+    "@vavt/md-editor-extension": "^3.0.0",
+    "@vuepic/vue-datepicker": "^5.0.1",
+    "axios": "^1.3.6",
+    "date-fns": "^2.30.0",
+    "dotenv": "^16.0.3",
+    "lodash.debounce": "^4.0.8",
+    "markdown-it": "^13.0.1",
+    "md-editor-v3": "^3.0.0",
+    "mitt": "^3.0.0",
+    "moment": "^2.29.4",
+    "showdown": "^2.1.0",
+    "vue": "^3.2.47",
+    "vue-i18n": "^9.2.2",
+    "vue-loading-overlay": "6.0",
+    "vue-markdown": "^2.2.4",
+    "vue-router": "^4.1.6",
+    "vue-sweetalert2": "^5.0.5",
+    "vue3-carousel": "^0.3.0",
+    "vue3-datepicker": "^0.3.4",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.22",
+    "tailwindcss": "^3.3.1",
+    "vite": "^4.1.4"
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.3.2"
+  }
+}

@@ -1,5 +1,5 @@
 # README #
-This is a repository for storing the training of Truong Ngo
+This is a repository for storing the training project of Truong Ngo
 
 ## Note for GIT
 * Please help appy GitFlow for this reposioty (https://danielkummer.github.io/git-flow-cheatsheet)

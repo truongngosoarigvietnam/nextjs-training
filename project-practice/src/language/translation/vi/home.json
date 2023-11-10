@@ -1,0 +1,91 @@
+{
+    "homeheader":{
+        "Specialist" : "Chuyên khoa" ,
+        "specialty"  :  "tìm bác sĩ theo chuyên khoa" ,
+        "Health" : "cơ sỡ y tế" ,
+        "hospital" : "chọn bệnh viện phòng khám" ,
+        "doctor" : "bác sĩ",
+        "Choosedoctor" : " chọn bác sĩ giỏi" ,
+        "package" : "gói khám",
+        "Generalcheck" : " chọn gói khám" ,
+        "Support" : "hổ trợ" ,
+        "ExaminationSpecialist" : "khám chuyên khoa" ,
+        "remoteexamination" : "khám từ xa" ,
+        "generalexamination" : "khám tổng quát" ,
+        "medicaltest" : " xét nghiệm y học" ,
+        "mentalhealth" : "sức khỏe tinh thần" ,
+        "dentalexamination" : "khám nha khoa" ,
+        "surgerypackage" : "gói phẩu thuật" ,
+        "medicalproducts" : "sản phẩm y tế" ,
+        "Healthbusiness" : "sức khỏe doanh nghiệp" ,
+        "MEDICALBACKGROUND" : "NỀN TẢN Y TẾ" ,
+        "COMPREHENSIVEHEALTHCARE" : "CHĂM SÓC SỨC KHỎE TOÀN DIỆN" ,
+        "welcome" : "xin chào" ,
+        "popular-specialty" : "Chuyên khoa phố biến" ,
+        "top-facilities" : "Cơ sỡ y tế nổi bật"
+
+
+        } ,
+    "menu": {
+        "system": {
+            "header": "Hệ thống",
+            "system-administrator": {
+                "header": "Quản trị hệ thống",
+                "user-manage": "Quản lý người sử dụng",
+                "user-redux": "Quản lý user-redux",
+                "register-package-group-or-account": "Đăng ký gói dịch vụ cho nhóm/tài khoản"
+            },
+            "system-parameter": {
+                "header": "Tham số hệ thống"
+            }
+        } ,
+   
+    "admin" :{
+        "user" : "Người dùng" ,
+        "manage-user": "Người dùng" ,
+        "manage-account": "Tài khoản" ,
+        "manage-doctor":"Quản lí bác sĩ" ,
+        "manage-admin" : "Quản lí admin" ,
+        "crud" : "CRUD user" ,
+        "crud-redux" : "CRUD user" ,
+        "clinic" : "Phòng khám" ,
+        "manage-clinic" : " Quản lí phòng khám",
+        "specialty" : "Chuyên khoa" ,
+        "manage-specialty" : " Quản lí chuyên khoa" ,
+        "handbook" : "Cẩm nang" ,
+        "manage-handbook" : " Quản lí cẩm nang" ,
+        "manage-apointments" : "Quản lý lịch khám bệnh" 
+
+
+    },
+    "doctor" : {
+        "manage-user" : "người dùng",
+        "manage-schedule" : "Quản lí kế hoạch khám bệnh ",
+        "manage-patient" : "Quản lí bệnh nhân khám bệnh  "
+     }
+},
+    "manage-schedule" : {
+        "title" : " quản lí kế hoạch khám bệnh của bác sĩ"
+    },
+    "manage-patient" : {
+        "title" : " quản lí kế hoạch khám bệnh của bác sĩ"
+    },
+    "pagination": {
+        "firstName": "Tên",
+        "lastName": "Họ",
+        "position": "Chức vụ",
+        "image": "Hình ảnh",
+        "address" : "Địa chỉ" ,
+        "action": "Chức năng"
+    },
+    "button" :{
+        "addnew" : "Thêm mới" ,
+        "prev" :"Quay lại" ,
+        "next" :"Tiếp" ,
+        "more" : "Xem thêm"
+    }
+    
+
+   
+       
+}

@@ -1,0 +1,69 @@
+{
+    "homeheader": {
+        "Specialist": "Specialist",
+        "specialty": "Find a doctor by specialty",
+        "Health": "Health facilities",
+        "hospital": "Choose hospital clinic",
+        "doctor": " doctor",
+        "Choosedoctor": "Choose a good doctor",
+        "package": "package",
+        "Generalcheck": "General health check",
+        "Support": "Support",
+        "ExaminationSpecialist": "Examination Specialist",
+        "remoteexamination": "remote examination",
+        "generalexamination": "general examination",
+        "medicaltest": " medical test",
+        "mentalhealth": "mental health",
+        "dentalexamination": "dental examination",
+        "surgerypackage": "surgery package",
+        "medicalproducts": "medical products",
+        "Healthbusiness": "sức khỏe doanh nghiệp",
+        "MEDICALBACKGROUND": "MEDICAL BACKGROUND",
+        "COMPREHENSIVEHEALTHCARE": "COMPREHENSIVE HEALTH CARE",
+        "welcome": "welcome" ,
+        "popular-specialty" : "Popular specialty" ,
+        "top-facilities" : "Outstanding medical facility"
+
+
+    },
+    "menu": {
+        "admin": {
+            "user": "user",
+            "manage-user": " user management",
+            "manage-doctor": " doctor management",
+            "manage-user": "account management " ,
+            "manage-admin": "admin management",
+            "crud": "CRUD user",
+            "crud-redux": "CRUD redux",
+            "clinic": "clinic",
+            "manage-clinic": " management clinic",
+            "specialty": "specialty",
+            "manage-specialty": " management specialty",
+            "handbook": "handbook",
+            "manage-apointments" : "Manage medical appointments" 
+
+        },
+        "doctor": {
+            "manage-user": "User",
+            "manage-schedule": "schedule management",
+            "manage-patient": "manage appointment  "
+        }
+    },
+    "manage-schedule": {
+        "title": "Manage the doctor's examination plan"
+    },
+    "pagination": {
+        "firstName": "firstName",
+        "lastName": "lastName",
+        "position": "position",
+        "image": "image",
+        "address" : "address" ,
+        "action": "action"
+    },
+    "button" :{
+        "addnew" : "Add New" ,
+        "prev" :"Prev" ,
+        "next" :"Next" ,
+        "more" : "More"
+    }
+}
