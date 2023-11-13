@@ -9,3 +9,12 @@ export function formatDateTime(timestamp: string): string {
 
     return `${year}/${month}/${day} ${hour}:${minute}`;
 }
+ 
+export function formatVND(amount : number) {
+    let formatted = amount.toLocaleString('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
+    });
+
+    return formatted;
+}

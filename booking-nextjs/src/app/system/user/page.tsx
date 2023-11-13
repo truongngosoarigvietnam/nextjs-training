@@ -36,9 +36,7 @@ export default function page({}: Props) {
     });
     useEffect(() => {
         refetchGetListUsers();
-    }, [refetchGetListUsers]);
-
-    console.log(isOption);
+    }, [refetchGetListUsers, isPage]);
     const handleSearch = () => {
         refetchGetListUsers();
     };
@@ -69,7 +67,9 @@ export default function page({}: Props) {
                 </div>
             </div>
             <Fillter setOption={setOption} setKeySearch={setKeySearch} handleSearch={handleSearch} />
-            <Table listUsers={listUsers ? listUsers.users.data : []} />
+            <Table listUsers={listUsers ? listUsers.users.data : []} handleDeleteUser={function (id: number): void {
+                throw new Error('Function not implemented.');
+            } } />
             <Pagination
                 isPage={isPage}
                 handleNextPage={handleNextPage}

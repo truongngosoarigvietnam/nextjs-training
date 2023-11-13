@@ -46,7 +46,6 @@ export default function Page({}: Props) {
         userCreateLogin,
         {
             onSuccess: async (response) => {
-                console.log("check", response);
                 if (response.status === ServerStatusCode.OK) {
                     const res = await signIn("credentials", {
                         email: getValues("email"),

@@ -22,3 +22,40 @@ export interface UserList {
     positionId: positionEnum;
     createdAt : string;
 }
+export type ProvinceType = {
+    name: string;
+    code: number;
+};
+export type PositionType = {
+    keyMap: string;
+    type: string;
+    valueVi : string
+}
+ export type CreateUser = {
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    phoneNumber: string;
+    city: string;
+    district: string;
+    gender: string;
+    roleId: string;
+    positionId: string;
+    image: File;
+};
+export type SpecialData = {
+    id: number;
+    name: string;
+    image: string;
+    descriptionHTML: string;
+};
+export type DoctorInforData = {
+    doctorId: string,
+    description: string,
+    paymentId: string,
+    priceId: string,
+    provinceId: string,
+    specialtyId: string,
+    clinicId : string 
+}

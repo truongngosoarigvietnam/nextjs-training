@@ -15,13 +15,15 @@ import { emailRules, fieldRules, passwordRegisterRules, phoneNumberRules } from 
 import Upload from '../Upload';
 import ErrorMessage from '../ErrorMessage';
 
-type Props = {};
+type Props = {
+    id: number;
+};
 
-export default function Form({}: Props) {
+export default function EditForm({ id }: Props) {
     const { setIsLoading } = useContext(LoadingContext);
     const [isCodeProvince, setCodeProvince] = useState<number>(1);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
-    const [previewImage, setPreviewImage] = useState<string | null>(null);
+    const [previewImage, setPreviewImage] = useState<any>(null);
     const queryClient = useQueryClient();
 
     const {
@@ -35,6 +37,38 @@ export default function Form({}: Props) {
         formState: { errors },
         watch,
     } = useForm<CreateUser>();
+
+    // ACTION GET DETAIL
+
+    const getDetailUser = async (): Promise<CreateUser> => {
+        setIsLoading(true);
+        const { data } = await api.get(`${apiRouters.DETAIL_USER(id)}`);
+        return data.users;
+    };
+    const { data: detailUser, refetch: refetchGetDetailUser } = useQuery('getDetailUser', getDetailUser, {
+        staleTime: Infinity,
+        enabled: false,
+        retry: 0,
+        onSuccess: (res) => {
+            setValue('email', res.email);
+            setValue('firstName', res.firstName);
+            setValue('lastName', res.lastName);
+            setValue('phoneNumber', res.phoneNumber);
+            setValue('gender', res.gender);
+            setValue('roleId', res.roleId);
+            setValue('positionId', res.positionId);
+            setSelectedFile(res.image);
+            setPreviewImage(res.image);
+        },
+        onError: () => {},
+        onSettled: () => {
+            setIsLoading(false);
+        },
+        refetchOnMount: true,
+    });
+    useEffect(() => {
+        refetchGetDetailUser();
+    }, [refetchGetDetailUser]);
 
     //ACTION GET ALL PROVINCE
     const getListProvince = async (): Promise<ProvinceType[]> => {
@@ -134,15 +168,14 @@ export default function Form({}: Props) {
         },
         refetchOnMount: true,
     });
-    // ACTION CREATE
-    const userCreateNew = async (data: FormData): Promise<any> => {
+    // ACTION EDIT
+    const userEditInfor = async (data: FormData): Promise<any> => {
         setIsLoading(true);
-        return await api.post(apiRouters.CREATE_USER, data);
+        return await api.post(apiRouters.EDIT_USER, data);
     };
-    const { mutate: userCreateRequest, isLoading } = useMutation('userCreateRequest', userCreateNew, {
+    const { mutate: userEditRequest, isLoading } = useMutation('userEditRequest', userEditInfor, {
         onSuccess: async () => {
-            await queryClient.refetchQueries(['getListUsers']);
-            toast.success('🦄 New user created successfully!', {
+            toast.success('🦄 User information updated successfully!', {
                 position: 'top-right',
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -152,27 +185,20 @@ export default function Form({}: Props) {
                 progress: undefined,
                 theme: 'light',
             });
-            reset({
-                firstName: '',
-                lastName: '',
-                email : '' ,
-                password: '',
-                phoneNumber: '',
-                
-     
-            })
-            setSelectedFile(null)
-            setPreviewImage('')
+        refetchGetDetailUser()
         },
         onError: () => {
             setIsLoading(false);
         },
-        onSettled: () => {},
+        onSettled: () => {
+            setIsLoading(false);
+        },
     });
 
     const city = watch('city');
     const onSubmit: SubmitHandler<CreateUser> = (data) => {
         const newData = new FormData();
+        newData.append('id', `${id}`);
         newData.append('firstName', data.firstName);
         newData.append('lastName', data.lastName);
         newData.append('email', data.email);
@@ -185,7 +211,7 @@ export default function Form({}: Props) {
         if (selectedFile) {
             newData.append('image', selectedFile);
         }
-        userCreateRequest(newData);
+        userEditRequest(newData);
     };
     useEffect(() => {
         const list = listProvinces?.find((item) => {
@@ -264,8 +290,9 @@ export default function Form({}: Props) {
                         <div className="mt-2 sm:col-span-2 sm:mt-0">
                             <input
                                 type="password"
-                                {...register('password', passwordRegisterRules(true))}
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6"
+                                value="123455678"
+                                disabled
+                                className="block disabled:bg-gray-200 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6"
                             />
                             <ErrorMessage error={errors.password?.message} />
                         </div>

@@ -20,21 +20,22 @@ import {
     ChevronRightIcon,
     MagnifyingGlassIcon,
 } from "@heroicons/react/20/solid";
+import Link from "next/link";
 import { useSession } from "next-auth/react";
 
 import NoImg from "@/components/images/no-user-image.gif";
-import Link from "next/link";
+import { pageRouters } from "@/components/constants/router";
 
 const navigation = [
-    { name: 'Trang chủ', href: '/system', icon: HomeIcon, current: true },
+    { name: 'Trang chủ', href: pageRouters.DASHBOARD, icon: HomeIcon, current: true },
     {
         name: 'Người dùng',
         icon: UsersIcon,
         current: false,
         children: [
-            { name: 'Quản lí người dùng', href: '/system/user' },
-            { name: 'Quản lí tài khoản', href: '/system/account' },
-            { name: 'Quản lí bác sĩ', href: '#' },
+            { name: 'Quản lí người dùng', href: pageRouters.MANAGER_USER },
+            { name: 'Quản lí tài khoản', href: pageRouters.MANAGER_ACCOUNT },
+            { name: 'Quản lí bác sĩ', href: pageRouters.MANAGER_DOCTOR },
             { name: 'Quản lí kế hoạch khám bệnh', href: '#' },
             { name: 'Quản lí lịch khám bệnh', href: '#' },
         ],
@@ -77,7 +78,6 @@ type Props = {
 export default function Header({ children }: Props) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const { data: session } = useSession();
-    console.log(session);
     return (
         <>
             <div>

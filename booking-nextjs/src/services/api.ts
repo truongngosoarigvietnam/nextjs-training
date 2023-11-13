@@ -4,7 +4,7 @@ import { getSession, signOut } from 'next-auth/react';
 
 const instance: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
-  timeout: 5000, // request timeout in milliseconds
+  timeout: 50000, // request timeout in milliseconds
   
 });
 

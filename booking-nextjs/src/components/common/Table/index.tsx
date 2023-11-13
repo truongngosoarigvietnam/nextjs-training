@@ -6,24 +6,16 @@ import { UserList } from "@/interfaces/common";
 import NoImg from "@/components/images/no-user-image.gif";
 import Position from "../Position";
 import { formatDateTime } from "@/utils";
+import { pageRouters } from "@/components/constants/router";
+import Link from "next/link";
 
 
 type Props = {
-    listUsers: UserList[]
+    listUsers: UserList[];
+    handleDeleteUser: (id: number) => void;
 };
 
-export default function Table({ listUsers }: Props) {
-    const people = [
-        {
-            name: "Lindsay Walton",
-            title: "Front-end Developer",
-            department: "Optimization",
-            email: "lindsay.walton@example.com",
-            role: "Member",
-            image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-        },
-        // More people...
-    ];
+export default function Table({ listUsers, handleDeleteUser }: Props) {
     return (
         <div className="">
             <div className="mt-3 flow-root">
@@ -97,14 +89,17 @@ export default function Table({ listUsers }: Props) {
                                             {formatDateTime(person.createdAt)}
                                         </td>
                                         <td className="h-full pt-9 flex gap-2  whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                                            <a
-                                                href="#"
+                                            <Link
+                                                href={pageRouters.EDIT_ACCOUNT(person.id)}
                                                 className="text-indigo-600 hover:opacity-60 hover:text-indigo-900"
                                             >
                                                 Edit
                                                 <span className="sr-only">, {person.firstName}</span>
-                                            </a>
-                                            <span className="text-red-600 cursor-pointer hover:opacity-60 hover:text-red-900">
+                                            </Link>
+                                            <span
+                                                onClick={() => handleDeleteUser(person.id)}
+                                                className="text-red-600 cursor-pointer hover:opacity-60 hover:text-red-900"
+                                            >
                                                 Delete
                                             </span>
                                         </td>
