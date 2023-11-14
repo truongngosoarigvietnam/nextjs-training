@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { UseFormRegister } from 'react-hook-form';
+import { UseFormRegister, UseFormSetValue } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import { apiRouters } from '@/components/constants/router';
 import { LoadingContext } from '@/components/contexts/Loading';
@@ -8,9 +8,10 @@ import api from '@/services/api';
 
 type Props = {
     register: UseFormRegister<DoctorInforData>;
+    setValue: UseFormSetValue<DoctorInforData>;
 };
 
-export default function SelectClinics({ register }: Props) {
+export default function SelectClinics({ register, setValue }: Props) {
     const { setIsLoading } = useContext(LoadingContext);
 
     // ACTION GET ALL CLINICS
@@ -23,7 +24,9 @@ export default function SelectClinics({ register }: Props) {
         staleTime: Infinity,
         enabled: true,
         retry: 0,
-        onSuccess: () => {},
+        onSuccess: (res) => {
+            setValue('clinicId' , res[0].id)
+        },
         onError: () => {},
         onSettled: () => {
             setIsLoading(false);

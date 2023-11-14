@@ -56,6 +56,6 @@ export type DoctorInforData = {
     paymentId: string,
     priceId: string,
     provinceId: string,
-    specialtyId: string,
-    clinicId : string 
+    specialtyId: number,
+    clinicId : number 
 }

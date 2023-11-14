@@ -1,6 +1,6 @@
 'use client';
 import React, { useContext } from 'react';
-import { UseFormRegister } from 'react-hook-form';
+import { UseFormRegister, UseFormSetValue } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import { apiRouters } from '@/components/constants/router';
 import { LoadingContext } from '@/components/contexts/Loading';
@@ -54,6 +54,9 @@ export default function SelectDoctor({ register }: Props) {
                     id="doctor"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                 >
+                    <option value="">
+                        None
+                    </option>
                     {listDoctor?.map((item) => {
                         return (
                             <option key={item.id} value={item.id}>

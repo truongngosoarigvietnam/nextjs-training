@@ -18,4 +18,5 @@ export const apiRouters = {
     LIST_DOCTOR: '/get-all-doctors',
     LIST_SPECIAL: '/get-all-specialty-all',
     LIST_CLINIC: '/get-all-clinic-all',
+    DETAIL_DOCTOR: (id: number) => `/get-detail-doctor-by-id?id=${id}`,
 };

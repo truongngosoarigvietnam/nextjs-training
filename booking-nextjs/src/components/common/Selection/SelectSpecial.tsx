@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { UseFormRegister } from 'react-hook-form';
+import { UseFormRegister, UseFormSetValue } from 'react-hook-form';
 import { useQuery } from 'react-query';
 
 import { apiRouters } from '@/components/constants/router';
@@ -9,10 +9,11 @@ import api from '@/services/api';
 
 type Props = {
     register: UseFormRegister<DoctorInforData>;
+    setValue: UseFormSetValue<DoctorInforData>;
 };
 
 
-export default function SelectSpecial({ register }: Props) {
+export default function SelectSpecial({ register, setValue }: Props) {
     const { setIsLoading } = useContext(LoadingContext);
 
     // ACTION GET ALL SPECIAL
@@ -25,7 +26,9 @@ export default function SelectSpecial({ register }: Props) {
         staleTime: Infinity,
         enabled: true,
         retry: 0,
-        onSuccess: () => {},
+        onSuccess: (res) => {
+            setValue('specialtyId' , res[0].id)
+        },
         onError: () => {},
         onSettled: () => {
             setIsLoading(false);

@@ -1,5 +1,5 @@
 'use client';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useQuery } from 'react-query';
 
 import SelectDoctor from '../Selection/SelectDoctor';
@@ -11,7 +11,7 @@ import { DoctorInforData, PositionType } from '@/interfaces/common';
 import SelectSpecial from '../Selection/SelectSpecial';
 import SelectClinics from '../Selection/SelectClinics';
 import Markdowns from '../Markdown/Markdown';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 export default function FormDoctor() {
     const { setIsLoading } = useContext(LoadingContext);
@@ -64,8 +64,34 @@ export default function FormDoctor() {
         },
         refetchOnMount: true,
     });
+    // ACTION GET ALL INFO DOCTOR
+    const GetInfoDoctor = async (): Promise<PositionType[]> => {
+        setIsLoading(true);
+        const { data } = await api.get(`${apiRouters.DETAIL_DOCTOR(parseInt(getValues('doctorId')))}`);
+        return data.data;
+    };
+    const { data: dataInfoDoctor, refetch: refetchGetInfoDoctor } = useQuery('getInfoDoctor', GetInfoDoctor, {
+        staleTime: Infinity,
+        enabled: false,
+        retry: 0,
+        onSuccess: (res) => {
+            // setValue('description' , res.)
+        },
+        onError: () => {},
+        onSettled: () => {
+            setIsLoading(false);
+        },
+        refetchOnMount: true,
+    });
+    const onSubmit: SubmitHandler<DoctorInforData> = (data) => {
+        console.log(data);
+    };
+    useEffect(() => {
+       refetchGetInfoDoctor()
+    },[watch('doctorId')])
+
     return (
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
                     <h2 className="text-base font-semibold leading-7 text-gray-900">Profile</h2>
@@ -93,8 +119,8 @@ export default function FormDoctor() {
                                 Write a few sentences about yourself.
                             </p>
                         </div>
-                        <SelectSpecial register={register} />
-                        <SelectClinics register={register} />
+                        <SelectSpecial setValue={setValue} register={register} />
+                        <SelectClinics setValue={setValue} register={register} />
                     </div>
                 </div>
 
@@ -106,8 +132,18 @@ export default function FormDoctor() {
                     </p>
 
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                        <CheckboxOptions title="Price" type="PRICE" listData={listPrice ? listPrice : []} />
-                        <CheckboxOptions title="Payment" type="PAYMENT" listData={listPayment ? listPayment : []} />
+                        <CheckboxOptions
+                            register={register}
+                            title="Price"
+                            type="PRICE"
+                            listData={listPrice ? listPrice : []}
+                        />
+                        <CheckboxOptions
+                            register={register}
+                            title="Payment"
+                            type="PAYMENT"
+                            listData={listPayment ? listPayment : []}
+                        />
                     </div>
                 </div>
                 <div>
