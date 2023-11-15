@@ -36,7 +36,7 @@ const navigation = [
             { name: 'Quản lí người dùng', href: pageRouters.MANAGER_USER },
             { name: 'Quản lí tài khoản', href: pageRouters.MANAGER_ACCOUNT },
             { name: 'Quản lí bác sĩ', href: pageRouters.MANAGER_DOCTOR },
-            { name: 'Quản lí kế hoạch khám bệnh', href: '#' },
+            { name: 'Quản lí kế hoạch khám bệnh', href: pageRouters.MANAGER_SCHEDULE },
             { name: 'Quản lí lịch khám bệnh', href: '#' },
         ],
     },

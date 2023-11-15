@@ -100,7 +100,7 @@ export default function FormDoctor() {
                     </p>
 
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                        <SelectDoctor register={register} />
+                        <SelectDoctor register={register("doctorId")} />
                         <div className="col-span-full">
                             <label htmlFor="about" className="block text-sm font-medium leading-6 text-gray-900">
                                 About

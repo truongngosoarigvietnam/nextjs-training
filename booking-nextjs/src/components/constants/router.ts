@@ -5,6 +5,7 @@ export const pageRouters = {
     MANAGER_ACCOUNT: '/system/account',
     MANAGER_DOCTOR: '/system/doctor',
     EDIT_ACCOUNT: (id: number) => `/system/account/${id}`,
+    MANAGER_SCHEDULE: '/system/schedule',
 };
 export const apiRouters = {
     USER_LOGIN: '/login',

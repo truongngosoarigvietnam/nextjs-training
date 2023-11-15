@@ -59,3 +59,7 @@ export type DoctorInforData = {
     specialtyId: number,
     clinicId : number 
 }
+export interface IdataTime extends PositionType {
+    isSelected: boolean;
+    id: number;
+}
