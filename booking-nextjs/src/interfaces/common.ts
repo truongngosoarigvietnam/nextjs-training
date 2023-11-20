@@ -1,5 +1,4 @@
-import { StatusComponent, positionEnum } from "@/components/constants/enum";
-
+import { StatusComponent, positionEnum } from '@/components/constants/enum';
 
 export interface UserRes {
     errCode: number;
@@ -20,7 +19,7 @@ export interface UserList {
     phoneNumber: string;
     roleId: StatusComponent;
     positionId: positionEnum;
-    createdAt : string;
+    createdAt: string;
 }
 export type ProvinceType = {
     name: string;
@@ -29,9 +28,9 @@ export type ProvinceType = {
 export type PositionType = {
     keyMap: string;
     type: string;
-    valueVi : string
-}
- export type CreateUser = {
+    valueVi: string;
+};
+export type CreateUser = {
     email: string;
     password: string;
     firstName: string;
@@ -51,15 +50,91 @@ export type SpecialData = {
     descriptionHTML: string;
 };
 export type DoctorInforData = {
-    doctorId: string,
-    description: string,
-    paymentId: string,
-    priceId: string,
-    provinceId: string,
-    specialtyId: number,
-    clinicId : number 
-}
+    doctorId: string;
+    description: string;
+    paymentId: string;
+    priceId: string;
+    provinceId: string;
+    specialtyId: number;
+    clinicId: number;
+    contentHTML: string;
+    contentMarkdowmn: string;
+    action: string;
+};
 export interface IdataTime extends PositionType {
     isSelected: boolean;
     id: number;
+}
+export interface InforDoctorData {
+    DoctorInfor: {
+        SpecialtyId: number;
+        clinicId: number;
+        priceId: string;
+        paymentId: string;
+        specialtyData: {
+            name: string;
+        };
+        addressClinic?: string;
+        nameClinic?: string;
+        priceData?: {
+            valueVi: string;
+        };
+        paymentData?: {
+            valueVi: string;
+        };
+    };
+    Markdown: {
+        description: string;
+        contentHTML: string;
+        contentMarkdowmn: string;
+    };
+}
+export interface AllDataDoctor extends InforDoctorData {
+    firstName: string,
+    lastName: string,
+    image: string,
+    address : string 
+}
+export type ScheduleDoctor = {
+    doctorId: number;
+    timeSelected: IdataTime[];
+};
+export type detailScheduleData = {
+    date: string;
+    doctorId: number;
+    timeType: string;
+    timeTypeData : {
+      valueVi : string 
+    }
+};
+export interface AllDoctor extends  InforDoctorData  {
+    id: number;
+    email: string;
+    firstName: string;
+    lastName: string;
+    address: string;
+    phoneNumber: string;
+    gender: string;
+    roleId: string;
+    positionId: string;
+    image: string;
+};
+export interface IBlogs {
+    id: number;
+    userId: number;
+    title: string;
+    content: string;
+    thumb: string;
+    topic: string;
+    createdAt: string;
+    updatedAt: string;
+}
+export interface IDataBooking {
+    email: string;
+    doctorId: number;
+    date: number;
+    timeType: string;
+    fullName: string;
+    selectedGender: string;
+    address: string;
 }

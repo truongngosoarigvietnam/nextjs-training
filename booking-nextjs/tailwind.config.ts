@@ -37,7 +37,9 @@ module.exports = {
                 mainColor: '#0071ba',
                 button: '#0d6efd',
             },
-     
+            fontFamily: {
+                fangsong: 'fangsong',
+            },
         },
     },
     plugins: [require('@tailwindcss/forms')],

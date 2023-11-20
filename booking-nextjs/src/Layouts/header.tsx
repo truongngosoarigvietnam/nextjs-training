@@ -82,11 +82,7 @@ export default function Header({ children }: Props) {
         <>
             <div>
                 <Transition.Root show={sidebarOpen} as={Fragment}>
-                    <Dialog
-                        as="div"
-                        className="relative z-50 lg:hidden"
-                        onClose={setSidebarOpen}
-                    >
+                    <Dialog as="div" className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
                         <Transition.Child
                             as={Fragment}
                             enter="transition-opacity ease-linear duration-300"
@@ -123,17 +119,10 @@ export default function Header({ children }: Props) {
                                             <button
                                                 type="button"
                                                 className="-m-2.5 p-2.5"
-                                                onClick={() =>
-                                                    setSidebarOpen(false)
-                                                }
+                                                onClick={() => setSidebarOpen(false)}
                                             >
-                                                <span className="sr-only">
-                                                    Close sidebar
-                                                </span>
-                                                <XMarkIcon
-                                                    className="h-6 w-6 text-white"
-                                                    aria-hidden="true"
-                                                />
+                                                <span className="sr-only">Close sidebar</span>
+                                                <XMarkIcon className="h-6 w-6 text-white" aria-hidden="true" />
                                             </button>
                                         </div>
                                     </Transition.Child>
@@ -141,151 +130,110 @@ export default function Header({ children }: Props) {
                                     <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4 ring-1 ring-white/10">
                                         <div className="flex h-16 shrink-0 items-center">
                                             <img
-                                                className="h-8 w-auto"
-                                                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                                                className="h-14 w-auto"
+                                                src="https://res.cloudinary.com/dl0wt2mgx/image/upload/v1700109307/Screen_Shot_2023-11-16_at_11.28.22_rmtjxe.png"
                                                 alt="Your Company"
                                             />
                                         </div>
                                         <nav className="flex flex-1 flex-col">
-                                            <ul
-                                                role="list"
-                                                className="flex flex-1 flex-col gap-y-7"
-                                            >
+                                            <ul role="list" className="flex flex-1 flex-col gap-y-7">
                                                 <li>
-                                                    <ul
-                                                        role="list"
-                                                        className="-mx-2 space-y-1"
-                                                    >
-                                                        {navigation.map(
-                                                            (item) => (
-                                                                <li
-                                                                    key={
-                                                                        item.name
-                                                                    }
-                                                                >
-                                                                    {!item.children ? (
-                                                                        <Link
-                                                                            href={
-                                                                                item.href
-                                                                            }
-                                                                            className={`group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold text-gray-700 ${
-                                                                                item.current
-                                                                                    ? "bg-gray-50"
-                                                                                    : "hover:bg-gray-50"
-                                                                            }`}
-                                                                        >
-                                                                            <item.icon
-                                                                                className="h-6 w-6 shrink-0 text-gray-400"
-                                                                                aria-hidden="true"
-                                                                            />
-                                                                            {
-                                                                                item.name
-                                                                            }
-                                                                        </Link>
-                                                                    ) : (
-                                                                        <Disclosure as="div">
-                                                                            {({
-                                                                                open,
-                                                                            }) => (
-                                                                                <>
-                                                                                    <Disclosure.Button
-                                                                                        className={`
+                                                    <ul role="list" className="-mx-2 space-y-1">
+                                                        {navigation.map((item) => (
+                                                            <li key={item.name}>
+                                                                {!item.children ? (
+                                                                    <Link
+                                                                        href={item.href}
+                                                                        className={`group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold text-gray-700 ${
+                                                                            item.current
+                                                                                ? 'bg-gray-50'
+                                                                                : 'hover:bg-gray-50'
+                                                                        }`}
+                                                                    >
+                                                                        <item.icon
+                                                                            className="h-6 w-6 shrink-0 text-gray-400"
+                                                                            aria-hidden="true"
+                                                                        />
+                                                                        {item.name}
+                                                                    </Link>
+                                                                ) : (
+                                                                    <Disclosure as="div">
+                                                                        {({ open }) => (
+                                                                            <>
+                                                                                <Disclosure.Button
+                                                                                    className={`
                                                                                             flex items-center w-full text-left rounded-md p-2 gap-x-3 text-sm leading-6 font-semibold text-gray-700 ${
                                                                                                 item.current
-                                                                                                    ? "bg-gray-50"
-                                                                                                    : "hover:bg-gray-50"
+                                                                                                    ? 'bg-gray-50'
+                                                                                                    : 'hover:bg-gray-50'
                                                                                             }`}
-                                                                                    >
-                                                                                        <item.icon
-                                                                                            className="h-6 w-6 shrink-0 text-gray-400"
-                                                                                            aria-hidden="true"
-                                                                                        />
-                                                                                        {
-                                                                                            item.name
-                                                                                        }
-                                                                                        <ChevronRightIcon
-                                                                                            className={`
+                                                                                >
+                                                                                    <item.icon
+                                                                                        className="h-6 w-6 shrink-0 text-gray-400"
+                                                                                        aria-hidden="true"
+                                                                                    />
+                                                                                    {item.name}
+                                                                                    <ChevronRightIcon
+                                                                                        className={`
                                                                                                 ml-auto h-5 w-5 shrink-0 ${
                                                                                                     open
-                                                                                                        ? "rotate-90 text-gray-500"
-                                                                                                        : "text-gray-400"
+                                                                                                        ? 'rotate-90 text-gray-500'
+                                                                                                        : 'text-gray-400'
                                                                                                 }`}
-                                                                                            aria-hidden="true"
-                                                                                        />
-                                                                                    </Disclosure.Button>
-                                                                                    <Disclosure.Panel
-                                                                                        as="ul"
-                                                                                        className="mt-1 px-2"
-                                                                                    >
-                                                                                        {item.children.map(
-                                                                                            (
-                                                                                                subItem: any
-                                                                                            ) => (
-                                                                                                <li
-                                                                                                    key={
-                                                                                                        subItem.name
-                                                                                                    }
-                                                                                                >
-                                                                                                    {/* 44px */}
-                                                                                                    <Link
-                                                                                                        href={
-                                                                                                            subItem.href
-                                                                                                        }
-                                                                                                        className={`
+                                                                                        aria-hidden="true"
+                                                                                    />
+                                                                                </Disclosure.Button>
+                                                                                <Disclosure.Panel
+                                                                                    as="ul"
+                                                                                    className="mt-1 px-2"
+                                                                                >
+                                                                                    {item.children.map(
+                                                                                        (subItem: any) => (
+                                                                                            <li key={subItem.name}>
+                                                                                                {/* 44px */}
+                                                                                                <Link
+                                                                                                    href={subItem.href}
+                                                                                                    className={`
                                                                                                             block rounded-md py-2 pr-2 pl-9 text-sm leading-6 text-gray-700 ${
                                                                                                                 subItem.current
-                                                                                                                    ? "bg-gray-50"
-                                                                                                                    : "hover:bg-gray-50"
+                                                                                                                    ? 'bg-gray-50'
+                                                                                                                    : 'hover:bg-gray-50'
                                                                                                             }`}
-                                                                                                    >
-                                                                                                        {
-                                                                                                            subItem.name
-                                                                                                        }
-                                                                                                    </Link>
-                                                                                                </li>
-                                                                                            )
-                                                                                        )}
-                                                                                    </Disclosure.Panel>
-                                                                                </>
-                                                                            )}
-                                                                        </Disclosure>
-                                                                    )}
-                                                                </li>
-                                                            )
-                                                        )}
+                                                                                                >
+                                                                                                    {subItem.name}
+                                                                                                </Link>
+                                                                                            </li>
+                                                                                        ),
+                                                                                    )}
+                                                                                </Disclosure.Panel>
+                                                                            </>
+                                                                        )}
+                                                                    </Disclosure>
+                                                                )}
+                                                            </li>
+                                                        ))}
                                                     </ul>
                                                 </li>
                                                 <li>
                                                     <div className="text-xs font-semibold leading-6 text-gray-400">
                                                         Your teams
                                                     </div>
-                                                    <ul
-                                                        role="list"
-                                                        className="-mx-2 mt-2 space-y-1"
-                                                    >
+                                                    <ul role="list" className="-mx-2 mt-2 space-y-1">
                                                         {teams.map((team) => (
                                                             <li key={team.name}>
                                                                 <Link
-                                                                    href={
-                                                                        team.href
-                                                                    }
+                                                                    href={team.href}
                                                                     className={`
                                                                         group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold ${
                                                                             team.current
-                                                                                ? "bg-gray-800 text-white"
-                                                                                : "text-gray-400 hover:text-white hover:bg-gray-800"
+                                                                                ? 'bg-gray-800 text-white'
+                                                                                : 'text-gray-400 hover:text-white hover:bg-gray-800'
                                                                         }`}
                                                                 >
                                                                     <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white">
-                                                                        {
-                                                                            team.initial
-                                                                        }
+                                                                        {team.initial}
                                                                     </span>
-                                                                    <span className="truncate">
-                                                                        {
-                                                                            team.name
-                                                                        }
-                                                                    </span>
+                                                                    <span className="truncate">{team.name}</span>
                                                                 </Link>
                                                             </li>
                                                         ))}
@@ -318,22 +266,16 @@ export default function Header({ children }: Props) {
                     <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4">
                         <div className="flex h-16 shrink-0 items-center">
                             <img
-                                className="h-8 w-auto"
-                                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                                className="h-14 w-auto"
+                                src="https://res.cloudinary.com/dl0wt2mgx/image/upload/v1700109307/Screen_Shot_2023-11-16_at_11.28.22_rmtjxe.png"
                                 alt="Your Company"
                             />
                         </div>
                         <nav className="flex flex-1 flex-col">
                             <nav className="flex flex-1 flex-col">
-                                <ul
-                                    role="list"
-                                    className="flex flex-1 flex-col gap-y-7"
-                                >
+                                <ul role="list" className="flex flex-1 flex-col gap-y-7">
                                     <li>
-                                        <ul
-                                            role="list"
-                                            className="-mx-2 space-y-1"
-                                        >
+                                        <ul role="list" className="-mx-2 space-y-1">
                                             {navigation.map((item) => (
                                                 <li key={item.name}>
                                                     {!item.children ? (
@@ -342,8 +284,8 @@ export default function Header({ children }: Props) {
                                                             className={`
                                                                 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold text-gray-300 ${
                                                                     item.current
-                                                                        ? "bg-gray-600 !text-white"
-                                                                        : "hover:bg-gray-600 hover:text-white"
+                                                                        ? 'bg-gray-600 !text-white'
+                                                                        : 'hover:bg-gray-600 hover:text-white'
                                                                 }`}
                                                         >
                                                             <item.icon
@@ -359,57 +301,40 @@ export default function Header({ children }: Props) {
                                                                     <Disclosure.Button
                                                                         className={`flex items-center w-full text-left rounded-md p-2 gap-x-3 text-sm leading-6 font-semibold text-gray-300 ${
                                                                             item.current
-                                                                                ? "bg-gray-600 !text-white"
-                                                                                : "hover:bg-gray-600 hover:text-white"
+                                                                                ? 'bg-gray-600 !text-white'
+                                                                                : 'hover:bg-gray-600 hover:text-white'
                                                                         }`}
                                                                     >
                                                                         <item.icon
                                                                             className="h-6 w-6 shrink-0 "
                                                                             aria-hidden="true"
                                                                         />
-                                                                        {
-                                                                            item.name
-                                                                        }
+                                                                        {item.name}
                                                                         <ChevronRightIcon
                                                                             className={` ml-auto h-5 w-5 shrink-0 ${
                                                                                 open
-                                                                                    ? "rotate-90 text-gray-300"
-                                                                                    : "text-gray-300"
+                                                                                    ? 'rotate-90 text-gray-300'
+                                                                                    : 'text-gray-300'
                                                                             }`}
                                                                             aria-hidden="true"
                                                                         />
                                                                     </Disclosure.Button>
-                                                                    <Disclosure.Panel
-                                                                        as="ul"
-                                                                        className="mt-1 px-2"
-                                                                    >
-                                                                        {item.children.map(
-                                                                            (
-                                                                                subItem: any
-                                                                            ) => (
-                                                                                <li
-                                                                                    key={
-                                                                                        subItem.name
-                                                                                    }
+                                                                    <Disclosure.Panel as="ul" className="mt-1 px-2">
+                                                                        {item.children.map((subItem: any) => (
+                                                                            <li key={subItem.name}>
+                                                                                {/* 44px */}
+                                                                                <Link
+                                                                                    href={subItem.href}
+                                                                                    className={`block rounded-md py-2 pr-2 pl-9 text-sm leading-6 text-gray-300 ${
+                                                                                        subItem?.current
+                                                                                            ? 'bg-gray-50'
+                                                                                            : 'hover:bg-gray-600 hover:text-white'
+                                                                                    }`}
                                                                                 >
-                                                                                    {/* 44px */}
-                                                                                    <Link
-                                                                                        href={
-                                                                                            subItem.href
-                                                                                        }
-                                                                                        className={`block rounded-md py-2 pr-2 pl-9 text-sm leading-6 text-gray-300 ${
-                                                                                            subItem?.current
-                                                                                                ? "bg-gray-50"
-                                                                                                : "hover:bg-gray-600 hover:text-white"
-                                                                                        }`}
-                                                                                    >
-                                                                                        {
-                                                                                            subItem.name
-                                                                                        }
-                                                                                    </Link>
-                                                                                </li>
-                                                                            )
-                                                                        )}
+                                                                                    {subItem.name}
+                                                                                </Link>
+                                                                            </li>
+                                                                        ))}
                                                                     </Disclosure.Panel>
                                                                 </>
                                                             )}
@@ -424,10 +349,7 @@ export default function Header({ children }: Props) {
                                             href="#"
                                             className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-400 hover:bg-gray-800 hover:text-white"
                                         >
-                                            <Cog6ToothIcon
-                                                className="h-6 w-6 shrink-0"
-                                                aria-hidden="true"
-                                            />
+                                            <Cog6ToothIcon className="h-6 w-6 shrink-0" aria-hidden="true" />
                                             Settings
                                         </Link>
                                     </li>
@@ -449,21 +371,11 @@ export default function Header({ children }: Props) {
                         </button>
 
                         {/* Separator */}
-                        <div
-                            className="h-6 w-px bg-gray-900/10 lg:hidden"
-                            aria-hidden="true"
-                        />
+                        <div className="h-6 w-px bg-gray-900/10 lg:hidden" aria-hidden="true" />
 
                         <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-                            <form
-                                className="relative flex flex-1"
-                                action="#"
-                                method="GET"
-                            >
-                                <label
-                                    htmlFor="search-field"
-                                    className="sr-only"
-                                >
+                            <form className="relative flex flex-1" action="#" method="GET">
+                                <label htmlFor="search-field" className="sr-only">
                                     Search
                                 </label>
                                 <MagnifyingGlassIcon
@@ -479,31 +391,18 @@ export default function Header({ children }: Props) {
                                 />
                             </form>
                             <div className="flex items-center gap-x-4 lg:gap-x-6">
-                                <button
-                                    type="button"
-                                    className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500"
-                                >
-                                    <span className="sr-only">
-                                        View notifications
-                                    </span>
-                                    <BellIcon
-                                        className="h-6 w-6"
-                                        aria-hidden="true"
-                                    />
+                                <button type="button" className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500">
+                                    <span className="sr-only">View notifications</span>
+                                    <BellIcon className="h-6 w-6" aria-hidden="true" />
                                 </button>
 
                                 {/* Separator */}
-                                <div
-                                    className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-900/10"
-                                    aria-hidden="true"
-                                />
+                                <div className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-900/10" aria-hidden="true" />
 
                                 {/* Profile dropdown */}
                                 <Menu as="div" className="relative">
                                     <Menu.Button className="-m-1.5 flex items-center p-1.5">
-                                        <span className="sr-only">
-                                            Open user menu
-                                        </span>
+                                        <span className="sr-only">Open user menu</span>
                                         <Image
                                             className="h-8 w-8 rounded-full bg-gray-50"
                                             src={NoImg || session?.user.image}
@@ -516,8 +415,7 @@ export default function Header({ children }: Props) {
                                                 className="ml-4 text-sm font-semibold leading-6 text-gray-900"
                                                 aria-hidden="true"
                                             >
-                                                {session?.user.firstName}{" "}
-                                                {session?.user.lastName}
+                                                {session?.user.firstName} {session?.user.lastName}
                                             </span>
                                             <ChevronDownIcon
                                                 className="ml-2 h-5 w-5 text-gray-400"
@@ -542,9 +440,7 @@ export default function Header({ children }: Props) {
                                                             href={item.href}
                                                             className={`
                                                                 block px-3 py-1 text-sm leading-6 text-gray-900 ${
-                                                                    active
-                                                                        ? "bg-gray-50"
-                                                                        : ""
+                                                                    active ? 'bg-gray-50' : ''
                                                                 }`}
                                                         >
                                                             {item.name}

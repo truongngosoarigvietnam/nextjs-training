@@ -3019,6 +3019,34 @@ button:focus-visible {
 .rdp-button[disabled]:not(.rdp-day_selected) {
     cursor: not-allowed !important ;
 }
+.custom-scrollbar {
+  max-height: 200px; 
+  overflow-y: auto; 
+  scrollbar-width: thin; 
+}
+
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 0px; 
+}
+li {
+
+}
+h1{
+    font-size: 30px !important;
+    font-weight: bold !important;
+  }
+h3{
+    font-size: 15px !important;
+    font-weight: bold !important;
+}
+li {
+    list-style: disc !important ;
+}
+
+
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -4,23 +4,13 @@ import { UseFormRegister, UseFormRegisterReturn, UseFormSetValue } from 'react-h
 import { useQuery } from 'react-query';
 import { apiRouters } from '@/components/constants/router';
 import { LoadingContext } from '@/components/contexts/Loading';
-import { DoctorInforData } from '@/interfaces/common';
+import { AllDoctor } from '@/interfaces/common';
 import api from '@/services/api';
 
 type Props = {
     register: UseFormRegisterReturn;
 };
-type AllDoctor = {
-    id: number;
-    email: string;
-    firstName: string;
-    lastName: string;
-    address: string;
-    phoneNumber: string;
-    gender: string;
-    roleId: string;
-    positionId: string;
-};
+
 
 export default function SelectDoctor({ register }: Props) {
     const { setIsLoading } = useContext(LoadingContext);

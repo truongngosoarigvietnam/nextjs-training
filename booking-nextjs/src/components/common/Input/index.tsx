@@ -49,27 +49,27 @@ const Input = ({
 	const isPassword = type === 'password';
 
 	return (
-		<div className="w-full">
-			{label && (
-				<label className={`block font-normal text-sm text-[#374151] ${labelName}`}>
-					{label}
-					{required && <span className="text-danger align-super">*</span>}
-				</label>
-			)}
-			<div className="relative flex items-center">
-				{icon && <Image src={icon} alt="Icon" width={18} height={18} className="absolute left-3" />}
+        <div className="w-full">
+            {label && (
+                <label className={`${labelName} block font-normal text-sm text-[#374151] `}>
+                    {label}
+                    {required && <span className="text-danger align-super">*</span>}
+                </label>
+            )}
+            <div className="relative flex items-center">
+                {icon && <Image src={icon} alt="Icon" width={18} height={18} className="absolute left-3" />}
 
-				<input
-					type={type}
-					className={`border-gray-300 focus:border-primary bg-[#F9FAFB] focus:ring-primary rounded-md shadow-sm mt-1 block w-full  ${className} `}
-					{...register}
-					{...props}
-				/>
-			</div>
+                <input
+                    type={type}
+                    className={`border-gray-300 focus:border-primary bg-[#F9FAFB] focus:ring-primary rounded-md shadow-sm mt-1 block w-full  ${className} `}
+                    {...register}
+                    {...props}
+                />
+            </div>
 
-			<ErrorMessage error={error} />
-		</div>
-	);
+            <ErrorMessage error={error} />
+        </div>
+    );
 };
 
 export default Input;

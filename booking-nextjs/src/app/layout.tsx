@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-day-picker/dist/style.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 import TanstackProvider from "@/components/common/tanstackQuery/TanstackProvider";
 import { AuthProvider } from "@/components/common/Providers/Providers";
