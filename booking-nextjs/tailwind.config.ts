@@ -17,7 +17,7 @@ module.exports = {
             ...colors,
             black: '#000',
             white: '#fff',
-            primary: '#7300AB',
+            primary: '#45C3D2',
             secondary: '#4F46E5',
             success: '#DCFCE7',
             warning: '#FFB119',

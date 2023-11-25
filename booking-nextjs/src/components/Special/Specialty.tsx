@@ -6,7 +6,8 @@ import Image from 'next/image';
 import { LoadingContext } from '../contexts/Loading';
 import { SpecialData } from '@/interfaces/common';
 import api from '@/services/api';
-import { apiRouters } from '../constants/router';
+import { apiRouters, pageRouters } from '../constants/router';
+import Link from 'next/link';
 
 type Props = {};
 
@@ -87,15 +88,20 @@ export default function Specialty({}: Props) {
     };
     return (
         <div className="w-full max-w-6xl mt-5">
-            <h3 className=" font-semibold text-2xl ">Chuyên khoa</h3>
+            <h2 className=" font-semibold text-2xl ">Chuyên khoa</h2>
             <div className="flex justify-end">
-                <button className="text-xl hover:opacity-70 font-semibold text-[#34929e] bg-[#daf3f6] py-[10px] px-2 rounded-lg">Xem thêm</button>
+                <Link
+                    href={pageRouters.SPECIAL}
+                    className="text-xl hover:opacity-70 font-semibold text-[#34929e] bg-[#daf3f6] py-[10px] px-2 rounded-lg"
+                >
+                    Xem thêm
+                </Link>
             </div>
             <div className="mt-4 relative">
                 <Slider {...settings} ref={slider}>
                     {listSpecial?.map((item) => {
                         return (
-                            <div key={item.id}>
+                            <Link href={pageRouters.SPECIAL_DETAIL(item.id)} key={item.id}>
                                 <div className="w-[90%] rounded-2xl border-[2px] border-[#f1f1f1] p-5">
                                     <Image
                                         width={500}
@@ -106,7 +112,7 @@ export default function Specialty({}: Props) {
                                     />
                                     <p className="text-center mt-5 text-lg font-semibold">{item.name}</p>
                                 </div>
-                            </div>
+                            </Link>
                         );
                     })}
                 </Slider>

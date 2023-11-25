@@ -44,14 +44,14 @@ const navigation = [
         name: 'Phòng khám',
         icon: FolderIcon,
         current: false,
-        children: [{ name: 'Quản lí phòng khám', href: '#' }],
+        children: [{ name: 'Quản lí phòng khám', href: pageRouters.MANAGER_CLINIC }],
     },
     {
         name: 'Chuyên khoa',
         href: '#',
         icon: CalendarIcon,
         current: false,
-        children: [{ name: 'Quản lí Chuyên khoa', href: '#' }],
+        children: [{ name: 'Quản lí Chuyên khoa', href: pageRouters.MANAGER_SPECIAL}],
     },
     {
         name: 'Cẩm nang',

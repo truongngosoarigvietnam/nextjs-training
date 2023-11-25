@@ -12,7 +12,7 @@ import api from '@/services/api';
 
 type Props = {};
 
-export default function ({}: Props) {
+export default function Page ({}: Props) {
     const { setIsLoading } = useContext(LoadingContext);
     const queryClient = useQueryClient();
 

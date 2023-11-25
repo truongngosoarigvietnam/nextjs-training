@@ -4,7 +4,7 @@ export type SpinnerProps = {
 
 const Spinner = ({ className = '' }: SpinnerProps) => {
   return (
-      <div role="status" className={`flex items-center justify-center z-60 h-screen ${className}`}>
+      <div role="status" className={`flex items-center justify-center z-90 h-screen ${className}`}>
           <svg
               aria-hidden="true"
               className="w-10 h-10 mr-2 animate-spin"

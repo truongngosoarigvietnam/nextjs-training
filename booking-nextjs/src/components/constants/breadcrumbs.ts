@@ -16,4 +16,9 @@ export const breadcrumbsData: BreadcrumbsData = {
         name: 'Detail',
         current: false,
     },
+    [pageRouters.SPECIAL]: {
+        href: pageRouters.SPECIAL,
+        name: 'Specials',
+        current: false,
+    },
 };

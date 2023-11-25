@@ -15,9 +15,10 @@ type Props = {
 };
 
 export default function DetailSchedule({ getValues, watch }: Props) {
-    const today = new Date().getTime();
+        const arrDay = getArrDays();
+
     const { setIsLoading } = useContext(LoadingContext);
-    const [isSelectDay, SetSelectDay] = useState<number>(today);
+    const [isSelectDay, SetSelectDay] = useState<number>(arrDay[0].value);
 
     // ACTION GET DETAIL SCHEDULE
     const GetScheduleDoctor = async (): Promise<detailScheduleData[]> => {
@@ -49,7 +50,6 @@ export default function DetailSchedule({ getValues, watch }: Props) {
         }
     }, [watch('doctorId')]);
 
-    const arrDay = getArrDays();
     const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
         SetSelectDay(parseInt(e.target.value));
      

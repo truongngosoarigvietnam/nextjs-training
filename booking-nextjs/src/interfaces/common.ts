@@ -20,6 +20,9 @@ export interface UserList {
     roleId: StatusComponent;
     positionId: positionEnum;
     createdAt: string;
+    positionData?: {
+        valueVi: string;
+    };
 }
 export type ProvinceType = {
     name: string;
@@ -48,6 +51,9 @@ export type SpecialData = {
     name: string;
     image: string;
     descriptionHTML: string;
+    descriptionMarkdown: string;
+    createdAt: string;
+    address: string;
 };
 export type DoctorInforData = {
     doctorId: string;
@@ -90,10 +96,11 @@ export interface InforDoctorData {
     };
 }
 export interface AllDataDoctor extends InforDoctorData {
-    firstName: string,
-    lastName: string,
-    image: string,
-    address : string 
+    firstName: string;
+    lastName: string;
+    image: string;
+    address: string;
+    id: number;
 }
 export type ScheduleDoctor = {
     doctorId: number;
@@ -103,11 +110,12 @@ export type detailScheduleData = {
     date: string;
     doctorId: number;
     timeType: string;
-    timeTypeData : {
-      valueVi : string 
-    }
+    currentNumber: number;
+    timeTypeData: {
+        valueVi: string;
+    };
 };
-export interface AllDoctor extends  InforDoctorData  {
+export interface AllDoctor extends InforDoctorData {
     id: number;
     email: string;
     firstName: string;
@@ -118,7 +126,10 @@ export interface AllDoctor extends  InforDoctorData  {
     roleId: string;
     positionId: string;
     image: string;
-};
+    positionData?: {
+        valueVi: string;
+    };
+}
 export interface IBlogs {
     id: number;
     userId: number;
@@ -137,4 +148,21 @@ export interface IDataBooking {
     fullName: string;
     selectedGender: string;
     address: string;
+    phoneNumber: number;
+    note: string;
+}
+interface IMarkdown {
+    descriptionHTML: string;
+    descriptionMarkdown: string;
+}
+export interface IDataCreateClinic extends IMarkdown {
+    image: File;
+    name: string;
+    address: string;
+}
+
+export interface IDataDoctorForSpecial extends IMarkdown {
+    doctorSpecialty: {
+        doctorId: number;
+    }[];
 }

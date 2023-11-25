@@ -10,18 +10,19 @@ import ScheduleDoctor from './ScheduleDoctor';
 import InfoDoctor from './InfoDoctor';
 import { useParams } from 'next/navigation';
 
-type Props = {};
+type Props = {
+   
+};
 
-export default function DoctorDetail({}: Props) {
+export default function DoctorDetail({  }: Props) {
     const { setIsLoading } = useContext(LoadingContext);
-    const  {id} = useParams();
-
+    const { id } = useParams();
 
 
     // ACTION GET ALL INFO DOCTOR
     const GetInfoDoctor = async (): Promise<AllDataDoctor> => {
         setIsLoading(true);
-        const { data } = await api.get(`${apiRouters.DETAIL_DOCTOR(parseInt(id as string) )}`);
+        const { data } = await api.get(`${apiRouters.DETAIL_DOCTOR(parseInt(id as string))}`);
         return data.data;
     };
     const { data: dataInfoDoctor, refetch: refetchGetInfoDoctor } = useQuery('getInfoDoctor', GetInfoDoctor, {
@@ -55,20 +56,28 @@ export default function DoctorDetail({}: Props) {
                         <h3 className="text-2xl font-bold mb-3 text-[#333]">
                             Bác sĩ chuyên khoa : {dataInfoDoctor?.firstName} {dataInfoDoctor?.lastName}
                         </h3>
-                        <p className="text-[#555] text-xs max-w-xl">{dataInfoDoctor?.Markdown.description}</p>
+                        {dataInfoDoctor?.Markdown && (
+                            <p className="text-[#555] text-xs max-w-xl">{dataInfoDoctor?.Markdown.description}</p>
+                        )}
                     </div>
                 </div>
                 <div className="mt-20 flex h-auto">
                     <div className="w-1/2">
-                        <ScheduleDoctor />
+                        {dataInfoDoctor
+                            &&
+                        <ScheduleDoctor dataInfoDoctor={dataInfoDoctor} />
+                        }
                     </div>
                     <div className="w-1/2">
                         <InfoDoctor DoctorInfor={dataInfoDoctor} />
                     </div>
                 </div>
-                {dataInfoDoctor &&
-                <div className='pb-20' dangerouslySetInnerHTML={{ __html: dataInfoDoctor?.Markdown.contentMarkdowmn }}></div>
-                 }
+                {dataInfoDoctor && dataInfoDoctor.Markdown && (
+                    <div
+                        className="pb-20"
+                        dangerouslySetInnerHTML={{ __html: dataInfoDoctor?.Markdown.contentMarkdowmn }}
+                    ></div>
+                )}
             </div>
         </div>
     );

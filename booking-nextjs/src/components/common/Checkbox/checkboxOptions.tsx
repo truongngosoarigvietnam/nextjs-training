@@ -17,7 +17,7 @@ export default function CheckboxOptions({ listData, type, title, register }: Pro
             <div className="mt-6 space-y-6">
                 {listData?.map((item) => {
                     return (
-                        <div className="relative flex gap-x-3">
+                        <div key={item.keyMap} className="relative flex gap-x-3">
                             <div className="flex h-6 items-center">
                                 {type === 'PRICE' && (
                                     <input

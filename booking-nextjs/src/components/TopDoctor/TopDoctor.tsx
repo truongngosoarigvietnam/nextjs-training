@@ -98,11 +98,14 @@ export default function TopDoctor({}: Props) {
             </div>
             <div className="absolute w-full top-[15%] flex justify-center">
                 <div className="w-full max-w-6xl ">
-                    <h3 className=" font-semibold text-2xl ">Các bác sĩ nổi bật</h3>
+                    <h2 className=" font-semibold text-2xl ">Các bác sĩ nổi bật</h2>
                     <div className="flex justify-end">
-                        <button className="text-xl hover:opacity-70 font-semibold text-[#34929e] bg-[#daf3f6] py-[10px] px-2 rounded-lg">
+                        <Link
+                            href={pageRouters.DOCTOR}
+                            className="text-xl hover:opacity-70 font-semibold text-[#34929e] bg-[#daf3f6] py-[10px] px-2 rounded-lg"
+                        >
                             Xem thêm
-                        </button>
+                        </Link>
                     </div>
                     <div className="mt-4 relative">
                         <Slider {...settings} ref={slider}>
@@ -111,12 +114,12 @@ export default function TopDoctor({}: Props) {
                                     <div key={item.id}>
                                         <Link
                                             href={pageRouters.DOCTOR_DETAIL(`${item.id}`)}
-                                            className="w-full rounded-2xl flex items-center flex-col  p-5"
+                                            className="w-full rounded-2xl flex items-center flex-col focus-visible:outline-none  p-5"
                                         >
                                             <Image
                                                 width={0}
                                                 height={0}
-                                                sizes='100vw'
+                                                sizes="100vw"
                                                 className="w-[220px] h-[220px] object-cover rounded-full"
                                                 src={item.image}
                                                 alt={item.id + 'special'}

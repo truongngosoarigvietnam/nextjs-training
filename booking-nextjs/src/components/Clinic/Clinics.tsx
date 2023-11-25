@@ -87,7 +87,7 @@ export default function Clinics({}: Props) {
     };
     return (
         <div className="w-full max-w-6xl mt-5 mb-10">
-            <h3 className=" font-semibold text-2xl ">Cơ sở</h3>
+            <h2 className=" font-semibold text-2xl ">Cơ sở</h2>
             <div className="flex justify-end">
                 <button className="text-xl hover:opacity-70 font-semibold text-[#34929e] bg-[#daf3f6] py-[10px] px-2 rounded-lg">
                     Xem thêm

@@ -1,30 +1,39 @@
 import React, { useContext, useEffect, useState } from 'react';
+import moment from 'moment';
 import { UseFormGetValues, UseFormWatch } from 'react-hook-form';
 import { useQuery } from 'react-query';
-import { apiRouters } from '@/components/constants/router';
-import { LoadingContext } from '@/components/contexts/Loading';
-import {  detailScheduleData } from '@/interfaces/common';
-import api from '@/services/api';
-import { getArrDays } from '@/utils';
-import calendarIcon from '@/components/images/calendar24.png';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
-import Modal from '../common/Modal';
+
+import { apiRouters } from '@/components/constants/router';
+import { LoadingContext } from '@/components/contexts/Loading';
+import calendarIcon from '@/components/images/calendar24.png';
+import { AllDataDoctor, detailScheduleData } from '@/interfaces/common';
+import api from '@/services/api';
+import { getArrDays } from '@/utils';
+import Modal from '../common/Modal/Booking';
 
 type Props = {
-   
+    dataInfoDoctor: AllDataDoctor;
 };
 
-export default function ScheduleDoctor({  }: Props) {
-    const today = new Date().getTime();
+export default function ScheduleDoctor({ dataInfoDoctor }: Props) {
+    const today = moment(new Date()).valueOf();
+        const arrDay = getArrDays();
+
     const { setIsLoading } = useContext(LoadingContext);
-    const [isSelectDay, SetSelectDay] = useState<number>(today);
-    const {id} = useParams();
+    const [isSelectDay, SetSelectDay] = useState<number>(arrDay[0].value);
+    const { id } = useParams();
+    const [isChooseDay, setChooseDay] = useState<string>('');
+    const [isTimeType, setIsTimeType] = useState<string>('');
+    const [open, setOpen] = useState(false);
 
     // ACTION GET DETAIL SCHEDULE
     const GetScheduleDoctor = async (): Promise<detailScheduleData[]> => {
         setIsLoading(true);
-        const { data } = await api.get(`${apiRouters.DETAIL_SCHEDULE_DOCTOR(parseInt(id as string), isSelectDay)}`);
+        const { data } = await api.get(
+            `${apiRouters.DETAIL_SCHEDULE_DOCTOR(parseInt(`${dataInfoDoctor.id}`), isSelectDay)}`,
+        );
         return data.infor.data;
     };
     const { data: dataScheduleDoctor, refetch: refetchGetDetailSchedule } = useQuery(
@@ -48,8 +57,6 @@ export default function ScheduleDoctor({  }: Props) {
         }
     }, [id, isSelectDay]);
 
-
-    const arrDay = getArrDays();
     const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
         SetSelectDay(parseInt(e.target.value));
     };
@@ -79,9 +86,15 @@ export default function ScheduleDoctor({  }: Props) {
                         {dataScheduleDoctor.map((item) => {
                             return (
                                 <button
+                                    onClick={() => {
+                                        setChooseDay(item.timeTypeData.valueVi);
+                                        setOpen(true);
+                                        setIsTimeType(item.timeType);
+                                    }}
+                                    disabled={item.currentNumber > 0}
                                     key={item.timeType}
-                                    className={`text py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none  rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 
-                                            bg-background
+                                    className={`                         
+                                    text py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none  rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 bg-background disabled:text-white disabled:opacity-60 disabled:bg-slate-800 disabled:bg-none
                                         `}
                                     type="button"
                                 >
@@ -94,7 +107,14 @@ export default function ScheduleDoctor({  }: Props) {
                     <p>Lịch bạn đang trống </p>
                 )}
             </div>
-            <Modal />
+            <Modal
+                dataInfoDoctor={dataInfoDoctor}
+                isChooseDay={isChooseDay}
+                open={open}
+                setOpen={setOpen}
+                isSelectDay={isSelectDay}
+                isTimeType={isTimeType}
+            />
         </div>
     );
 }

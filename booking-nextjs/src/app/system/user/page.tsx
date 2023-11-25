@@ -11,7 +11,7 @@ import { UserList, UserRes } from '@/interfaces/common';
 
 type Props = {};
 
-export default function page({}: Props) {
+export default function Page({}: Props) {
     const { setIsLoading } = useContext(LoadingContext);
 
     const [keySearch, setKeySearch] = useState<string>('');

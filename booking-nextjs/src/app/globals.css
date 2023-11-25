@@ -3024,14 +3024,20 @@ button:focus-visible {
   overflow-y: auto; 
   scrollbar-width: thin; 
 }
+.react-datepicker__input-container{
+    display : flex !important ;
+    align-items: center;
+    gap : 4px !important;
+}
 
+.react-datepicker__view-calendar-icon input {
+    padding: 6px 10px 5px 40px !important;
+}
 
 .custom-scrollbar::-webkit-scrollbar {
   width: 0px; 
 }
-li {
 
-}
 h1{
     font-size: 30px !important;
     font-weight: bold !important;

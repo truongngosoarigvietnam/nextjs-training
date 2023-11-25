@@ -89,13 +89,13 @@ export default function index({ pages, ...props }: BreadcrumbsProps) {
                                         >
                                             <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
                                         </svg>
-                                        <a
+                                        <Link
                                             href={page.href}
                                             className="ml-4 text-sm font-medium text-[#45c3d2] hover:text-gray-700"
                                             aria-current={page.current ? 'page' : undefined}
                                         >
                                             {page.name}
-                                        </a>
+                                        </Link>
                                     </div>
                                 </li>
                             ))}

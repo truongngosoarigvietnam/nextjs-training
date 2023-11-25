@@ -20,7 +20,17 @@ export function formatVND(amount: number) {
 
     return formatted;
 }
+ export function formatTimestamp(timestamp : number) {
+     const date = new Date(timestamp);
 
+     const weekday = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'][date.getDay()];
+
+     const day = date.getDate();
+     const month = date.getMonth() + 1;
+     const year = date.getFullYear();
+
+     return `${weekday} - ${day}/${month}/${year}`;
+ }
 export const getArrDays = () => {
     const capitalizeFirstLetter = (string: string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);

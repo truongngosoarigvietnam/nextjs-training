@@ -18,7 +18,7 @@ const LoadingProvider = ({ children }: { children: ReactNode }) => {
 	return (
 		<LoadingContext.Provider value={{ isLoading, setIsLoading }}>
 			{isLoading && (
-				<div className="z-[60] top-0 fixed overflow-hidden h-screen left-0 bg-slate-100 opacity-50 w-full flex items-center justify-center">
+				<div className="z-[90] top-0 fixed overflow-hidden h-screen left-0 bg-slate-100 opacity-50 w-full flex items-center justify-center">
 					<Spinner />
 				</div>
 			)}
