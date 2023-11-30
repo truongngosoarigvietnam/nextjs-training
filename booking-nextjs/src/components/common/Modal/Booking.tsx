@@ -48,6 +48,8 @@ export default function Index({ dataInfoDoctor, isChooseDay, open, setOpen, isSe
         setValue('date', isSelectDay);
         if (dataInfoDoctor) {
             setValue('doctorId', dataInfoDoctor?.id);
+            setValue('doctorName', dataInfoDoctor?.firstName + dataInfoDoctor.lastName);
+            setValue('timeString', isChooseDay);
         }
         setValue('timeType', isTimeType);
     }, [isSelectDay, isTimeType]);

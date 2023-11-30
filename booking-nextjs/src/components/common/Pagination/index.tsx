@@ -31,7 +31,7 @@ export default function Pagination({ totalPage, handleNextPage, handlePrevPage, 
                         Previous
                     </button>
                     <button
-                        disabled={totalPage === isPage + 1}
+                        disabled={totalPage === isPage + 1 || totalPage === 0 }
                         onClick={handleNextPage}
                         className="relative disabled:opacity-40 hover:opacity-70 ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0"
                     >
