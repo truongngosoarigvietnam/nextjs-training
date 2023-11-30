@@ -1,6 +1,7 @@
 'use client';
 import { Fragment, ReactNode, useState } from 'react';
 import { Dialog, Menu, Transition } from '@headlessui/react';
+import { usePathname } from 'next/navigation';
 import { Disclosure } from '@headlessui/react';
 import Image from 'next/image';
 import {
@@ -21,17 +22,12 @@ import { useSession } from 'next-auth/react';
 
 import NoImg from '@/components/images/no-user-image.gif';
 import { pageRouters } from '@/components/constants/router';
-import { usePathname } from 'next/navigation';
 
 
 const teams = [
     { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
     { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
     { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
-];
-const userNavigation = [
-    { name: 'Your profile', href: pageRouters.PROFILE },
-    { name: 'Sign out', href: '#' },
 ];
 type Props = {
     children: ReactNode;
@@ -41,9 +37,8 @@ export default function Header({ children }: Props) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const { data: session } = useSession();
     const pathname = usePathname();
-    console.log('check', pageRouters.MANAGER_USER === pathname);
-
     const navigation = [
+        
         {
             name: 'Trang chủ',
             href: pageRouters.DASHBOARD,
@@ -99,6 +94,10 @@ export default function Header({ children }: Props) {
             children: [{ name: 'Quản lí Cẩm nang', href: '#' }],
         },
         { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
+    ];
+    const userNavigation = [
+        { name: 'Your profile', href: `${pageRouters.PROFILE}` },
+        { name: 'Sign out', href: '#' },
     ];
     return (
         <>
