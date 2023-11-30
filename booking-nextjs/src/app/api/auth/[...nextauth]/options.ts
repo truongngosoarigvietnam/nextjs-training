@@ -1,3 +1,4 @@
+import { User } from '@/components/types';
 import type {  NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
@@ -74,7 +75,7 @@ export const options: NextAuthOptions = {
 			return { ...token, ...user };
 		},
 		async session({ session, token }) {
-			session.user = token.user;
+			session.user = token.user as User;
 			session.accessToken = token.accessToken as string;
 			session.refreshToken = token.refreshToken as string;
 			return Promise.resolve(session);

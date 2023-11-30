@@ -1,8 +1,8 @@
-"use client";
-import { Fragment, ReactNode, useState } from "react";
-import { Dialog, Menu, Transition } from "@headlessui/react";
-import { Disclosure } from "@headlessui/react";
-import Image from "next/image";
+'use client';
+import { Fragment, ReactNode, useState } from 'react';
+import { Dialog, Menu, Transition } from '@headlessui/react';
+import { Disclosure } from '@headlessui/react';
+import Image from 'next/image';
 import {
     Bars3Icon,
     BellIcon,
@@ -14,62 +14,24 @@ import {
     HomeIcon,
     UsersIcon,
     XMarkIcon,
-} from "@heroicons/react/24/outline";
-import {
-    ChevronDownIcon,
-    ChevronRightIcon,
-    MagnifyingGlassIcon,
-} from "@heroicons/react/20/solid";
-import Link from "next/link";
-import { useSession } from "next-auth/react";
+} from '@heroicons/react/24/outline';
+import { ChevronDownIcon, ChevronRightIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid';
+import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
-import NoImg from "@/components/images/no-user-image.gif";
-import { pageRouters } from "@/components/constants/router";
+import NoImg from '@/components/images/no-user-image.gif';
+import { pageRouters } from '@/components/constants/router';
+import { usePathname } from 'next/navigation';
 
-const navigation = [
-    { name: 'Trang chủ', href: pageRouters.DASHBOARD, icon: HomeIcon, current: true },
-    {
-        name: 'Người dùng',
-        icon: UsersIcon,
-        current: false,
-        children: [
-            { name: 'Quản lí người dùng', href: pageRouters.MANAGER_USER },
-            { name: 'Quản lí tài khoản', href: pageRouters.MANAGER_ACCOUNT },
-            { name: 'Quản lí bác sĩ', href: pageRouters.MANAGER_DOCTOR },
-            { name: 'Quản lí kế hoạch khám bệnh', href: pageRouters.MANAGER_SCHEDULE },
-            { name: 'Quản lí lịch khám bệnh', href: '#' },
-        ],
-    },
-    {
-        name: 'Phòng khám',
-        icon: FolderIcon,
-        current: false,
-        children: [{ name: 'Quản lí phòng khám', href: pageRouters.MANAGER_CLINIC }],
-    },
-    {
-        name: 'Chuyên khoa',
-        href: '#',
-        icon: CalendarIcon,
-        current: false,
-        children: [{ name: 'Quản lí Chuyên khoa', href: pageRouters.MANAGER_SPECIAL}],
-    },
-    {
-        name: 'Cẩm nang',
-        href: '#',
-        icon: DocumentDuplicateIcon,
-        current: false,
-        children: [{ name: 'Quản lí Cẩm nang', href: '#' }],
-    },
-    { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
-];
+
 const teams = [
-    { id: 1, name: "Heroicons", href: "#", initial: "H", current: false },
-    { id: 2, name: "Tailwind Labs", href: "#", initial: "T", current: false },
-    { id: 3, name: "Workcation", href: "#", initial: "W", current: false },
+    { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
+    { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
+    { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
 ];
 const userNavigation = [
-    { name: "Your profile", href: "#" },
-    { name: "Sign out", href: "#" },
+    { name: 'Your profile', href: pageRouters.PROFILE },
+    { name: 'Sign out', href: '#' },
 ];
 type Props = {
     children: ReactNode;
@@ -78,6 +40,66 @@ type Props = {
 export default function Header({ children }: Props) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const { data: session } = useSession();
+    const pathname = usePathname();
+    console.log('check', pageRouters.MANAGER_USER === pathname);
+
+    const navigation = [
+        {
+            name: 'Trang chủ',
+            href: pageRouters.DASHBOARD,
+            icon: HomeIcon,
+            current: pageRouters.DASHBOARD === pathname,
+        },
+        {
+            name: 'Người dùng',
+            icon: UsersIcon,
+            current: pathname.startsWith('/system'),
+            children: [
+                {
+                    name: 'Quản lí người dùng',
+                    href: pageRouters.MANAGER_USER,
+                    current: pageRouters.MANAGER_USER === pathname,
+                },
+                {
+                    name: 'Quản lí tài khoản',
+                    href: pageRouters.MANAGER_ACCOUNT,
+                    current: pageRouters.MANAGER_ACCOUNT === pathname,
+                },
+                {
+                    name: 'Quản lí bác sĩ',
+                    href: pageRouters.MANAGER_DOCTOR,
+                    current: pageRouters.MANAGER_DOCTOR === pathname,
+                },
+                {
+                    name: 'Quản lí kế hoạch khám bệnh',
+                    href: pageRouters.MANAGER_SCHEDULE,
+                    current: pageRouters.MANAGER_SCHEDULE === pathname,
+                },
+                { name: 'Quản lí lịch khám bệnh', href: '#' },
+            ],
+        },
+        {
+            name: 'Phòng khám',
+            icon: FolderIcon,
+            current: pageRouters.MANAGER_CLINIC === pathname,
+            children: [{ name: 'Quản lí phòng khám', href: pageRouters.MANAGER_CLINIC }],
+        },
+        {
+            name: 'Chuyên khoa',
+            href: '#',
+            icon: CalendarIcon,
+            current: pageRouters.MANAGER_SPECIAL === pathname,
+            children: [{ name: 'Quản lí Chuyên khoa', href: pageRouters.MANAGER_SPECIAL }],
+        },
+        {
+            name: 'Cẩm nang',
+            href: '#',
+            icon: DocumentDuplicateIcon,
+            current: false,
+            children: [{ name: 'Quản lí Cẩm nang', href: '#' }],
+        },
+        { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
+    ];
     return (
         <>
             <div>
@@ -327,7 +349,7 @@ export default function Header({ children }: Props) {
                                                                                     href={subItem.href}
                                                                                     className={`block rounded-md py-2 pr-2 pl-9 text-sm leading-6 text-gray-300 ${
                                                                                         subItem?.current
-                                                                                            ? 'bg-gray-50'
+                                                                                            ? 'bg-gray-600 !text-white'
                                                                                             : 'hover:bg-gray-600 hover:text-white'
                                                                                     }`}
                                                                                 >
@@ -405,7 +427,7 @@ export default function Header({ children }: Props) {
                                         <span className="sr-only">Open user menu</span>
                                         <Image
                                             className="h-8 w-8 rounded-full bg-gray-50"
-                                            src={NoImg || session?.user.image}
+                                            src={session?.user.image ? session?.user.image : NoImg}
                                             alt=""
                                             width={500}
                                             height={500}
@@ -436,7 +458,7 @@ export default function Header({ children }: Props) {
                                             {userNavigation.map((item) => (
                                                 <Menu.Item key={item.name}>
                                                     {({ active }) => (
-                                                        <a
+                                                        <Link
                                                             href={item.href}
                                                             className={`
                                                                 block px-3 py-1 text-sm leading-6 text-gray-900 ${
@@ -444,7 +466,7 @@ export default function Header({ children }: Props) {
                                                                 }`}
                                                         >
                                                             {item.name}
-                                                        </a>
+                                                        </Link>
                                                     )}
                                                 </Menu.Item>
                                             ))}
