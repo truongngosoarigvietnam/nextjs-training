@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react';
+'use client'
+import React, { useContext, useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { apiRouters } from '@/components/constants/router';
 import { LoadingContext } from '@/components/contexts/Loading';
@@ -35,6 +36,9 @@ export default function FormSchedule({ dataTime, setDataTime }: Props) {
         },
         refetchOnMount: true,
     });
+    useEffect(()=>{
+        refetchGetListTime()
+    },[])
 
     const handleClickBtnTime = (time: IdataTime) => {
         const newData = dataTime?.map((item: IdataTime) => {

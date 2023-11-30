@@ -8,8 +8,10 @@ export const pageRouters = {
     MANAGER_DOCTOR: '/system/doctor',
     EDIT_ACCOUNT: (id: number) => `/system/account/${id}`,
     MANAGER_SCHEDULE: '/system/schedule',
+    MANAGER_CALENDAR: '/system/calendar',
     MANAGER_CLINIC: '/system/clinic',
     MANAGER_SPECIAL: '/system/special',
+    MANAGER_HISTORY: '/system/calendar/patient',
     DOCTOR: '/doctor',
     DOCTOR_DETAIL: (id: string) => `/doctor/detail/${id}`,
     SPECIAL: '/special',
@@ -36,6 +38,7 @@ export const apiRouters = {
     EDIT_SPECIAL: '/edit-specialty',
 
     LIST_DOCTOR: '/get-all-doctors',
+    LIST_PATIENT: (id: number , date : number , statusId : string) =>  `/get-list-patient-for-doctor?doctorId=${id}&date=${date}&statusId=${statusId}`,
     LIST_SPECIAL: '/get-all-specialty-all',
     LIST_CLINIC: '/get-all-clinic-all',
     LIST_BLOG: '/get-all-blog',

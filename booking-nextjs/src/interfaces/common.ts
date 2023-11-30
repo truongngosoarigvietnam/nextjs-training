@@ -114,6 +114,7 @@ export type detailScheduleData = {
     timeTypeData: {
         valueVi: string;
     };
+
 };
 export interface AllDoctor extends InforDoctorData {
     id: number;
@@ -150,6 +151,8 @@ export interface IDataBooking {
     address: string;
     phoneNumber: number;
     note: string;
+    timeString? : string ;
+    doctorName? : string ;
 }
 interface IMarkdown {
     descriptionHTML: string;
@@ -165,4 +168,21 @@ export interface IDataDoctorForSpecial extends IMarkdown {
     doctorSpecialty: {
         doctorId: number;
     }[];
+}
+
+export interface IDataPatient {
+    id : number ,
+    timeTypeDataPatient :{
+        valueVi : string ;
+    }
+    patientData :{
+        address : string ;
+        email : string ;
+        firstName : string ;
+        genderData : {
+            valueVi : string
+        }
+    }
+    updatedAt : string 
+    totalPages : number
 }

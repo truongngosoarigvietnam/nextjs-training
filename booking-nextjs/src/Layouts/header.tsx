@@ -75,7 +75,7 @@ export default function Header({ children }: Props) {
                     href: pageRouters.MANAGER_SCHEDULE,
                     current: pageRouters.MANAGER_SCHEDULE === pathname,
                 },
-                { name: 'Quản lí lịch khám bệnh', href: '#' },
+                { name: 'Quản lí lịch khám bệnh', href: pageRouters.MANAGER_CALENDAR },
             ],
         },
         {
@@ -158,11 +158,11 @@ export default function Header({ children }: Props) {
                                             />
                                         </div>
                                         <nav className="flex flex-1 flex-col">
-                                            <ul role="list" className="flex flex-1 flex-col gap-y-7">
-                                                <li>
+                                            <ul role="!list-none" className="flex flex-1 flex-col gap-y-7">
+                                                <li className="lis">
                                                     <ul role="list" className="-mx-2 space-y-1">
                                                         {navigation.map((item) => (
-                                                            <li key={item.name}>
+                                                            <li className="!list-none" key={item.name}>
                                                                 {!item.children ? (
                                                                     <Link
                                                                         href={item.href}
@@ -296,10 +296,12 @@ export default function Header({ children }: Props) {
                         <nav className="flex flex-1 flex-col">
                             <nav className="flex flex-1 flex-col">
                                 <ul role="list" className="flex flex-1 flex-col gap-y-7">
-                                    <li>
+                                    <li className="!list-none">
                                         <ul role="list" className="-mx-2 space-y-1">
                                             {navigation.map((item) => (
-                                                <li key={item.name}>
+                                                <li
+                                                className="!list-none"
+                                                 key={item.name}>
                                                     {!item.children ? (
                                                         <Link
                                                             href={item.href}
@@ -343,7 +345,9 @@ export default function Header({ children }: Props) {
                                                                     </Disclosure.Button>
                                                                     <Disclosure.Panel as="ul" className="mt-1 px-2">
                                                                         {item.children.map((subItem: any) => (
-                                                                            <li key={subItem.name}>
+                                                                            <li
+                                                                            className="!list-none"
+                                                                             key={subItem.name}>
                                                                                 {/* 44px */}
                                                                                 <Link
                                                                                     href={subItem.href}
