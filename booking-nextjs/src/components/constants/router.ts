@@ -1,6 +1,7 @@
 export const pageRouters = {
     HOME: '/',
     LOGIN: 'auth/login',
+    PROFILE: '/profile/information',
     DASHBOARD: '/system',
     MANAGER_USER: '/system/user',
     MANAGER_ACCOUNT: '/system/account',
@@ -15,10 +16,13 @@ export const pageRouters = {
     SPECIAL_DETAIL: (id: number) => `/special/detail/${id}`,
 };
 export const apiRouters = {
+    USER_PROFILE: (id: number) => `/get-user-detail?id=${id}`,
     USER_LOGIN: '/login',
     LIST_USERS: (page: number, size: number, type: string, key: string) =>
         `/get-all-users?page=${page}&size=${size}&type=${type}&q=${key}`,
     ALL_CODE: (type: string) => `/allcode?type=${type}`,
+
+    CONFIRM_PASSWORD: '/confirm-password',
     CREATE_USER: '/create-new-user',
     CREATE_CLINIC: '/create-new-clinic',
     CREATE_SPECIAL: '/create-new-specialty',
@@ -41,5 +45,6 @@ export const apiRouters = {
     DETAIL_SCHEDULE_DOCTOR: (doctorId: number, date: number) =>
         `/get-schedule-doctor-by-date?doctorId=${doctorId}&date=${date}`,
     BOOKING_REQUEST: '/patient-book-appointment',
+    VERIFY_BOOKING: (token: string) => `/verify-book-appointment?token=${token}`,
     LIST_DOCTOR_FOR_SPECIAL: (id: number) => `/get-detail-specialty-by-id?id=${id}`,
 };

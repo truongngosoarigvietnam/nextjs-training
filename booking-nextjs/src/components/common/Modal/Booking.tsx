@@ -59,7 +59,7 @@ export default function Index({ dataInfoDoctor, isChooseDay, open, setOpen, isSe
     };
     const { mutate: userBookingRequest, isLoading } = useMutation('userBookingRequest', userBookingData, {
         onSuccess: async () => {
-         await queryClient.refetchQueries(['getScheduleDoctor']);
+            await queryClient.refetchQueries(['getScheduleDoctor']);
             toast.success('You have successfully scheduled your appointment Please confirm with email!', {
                 position: 'top-right',
                 autoClose: 5000,
@@ -225,6 +225,7 @@ export default function Index({ dataInfoDoctor, isChooseDay, open, setOpen, isSe
                                                         Ngày sinh
                                                     </label>
                                                     <DatePicker
+                                                        maxDate={new Date()}
                                                         className="border-gray-300 w-full max-w-[50%] focus:border-primary bg-[#F9FAFB] focus:ring-primary rounded-md shadow-sm "
                                                         showIcon
                                                         selected={startDate}
