@@ -1,6 +1,8 @@
 import moment from 'moment';
 
-export function formatDateTime(timestamp: string): string {
+export function
+    
+    formatDateTime(timestamp: string): string {
     const date = new Date(timestamp);
 
     const year = date.getFullYear().toString();

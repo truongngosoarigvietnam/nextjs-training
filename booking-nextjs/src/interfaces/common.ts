@@ -171,18 +171,34 @@ export interface IDataDoctorForSpecial extends IMarkdown {
 }
 
 export interface IDataPatient {
-    id : number ,
-    timeTypeDataPatient :{
-        valueVi : string ;
-    }
-    patientData :{
-        address : string ;
-        email : string ;
-        firstName : string ;
-        genderData : {
-            valueVi : string
-        }
-    }
-    updatedAt : string 
-    totalPages : number
+    id: number;
+    doctorId: number;
+    date: string;
+    patientId: number;
+    timeType: string;
+    timeTypeDataPatient: {
+        valueVi: string;
+    };
+    patientData: {
+        address: string;
+        email: string;
+        firstName: string;
+        genderData: {
+            valueVi: string;
+        };
+    };
+    updatedAt: string;
+    totalPages: number;
+}
+export interface IHistory {
+    id: number;
+    files: string;
+    doctorId: string;
+    description: string;
+    createdAt: string;
+    patientHistoryData: {
+        email: string;
+        firstName: string;
+        address : string;
+    };
 }

@@ -7,16 +7,17 @@ import axios from 'axios';
 import DatePicker from 'react-datepicker';
 
 import { ToastContainer, toast } from 'react-toastify';
-import { apiRouters } from '@/components/constants/router';
+import Link from 'next/link';
+import { apiRouters, pageRouters } from '@/components/constants/router';
 import { LoadingContext } from '@/components/contexts/Loading';
 import Input from '@/components/common/Input';
 import Selection from '@/components/common/Selection/index';
 import Upload from '@/components/common/Upload';
 import ErrorMessage from '@/components/common/ErrorMessage';
+import ConfirmPassword from '@/components/common/Modal/ConfirmPassword';
 import { CreateUser, PositionType, ProvinceType } from '@/interfaces/common';
 import api from '@/services/api';
 import { emailRules, fieldRules, phoneNumberRules } from '@/utils/Validatetor';
-import ConfirmPassword from '@/components/common/Modal/ConfirmPassword';
 
 export default function Page() {
     const { setIsLoading } = useContext(LoadingContext);
@@ -229,6 +230,26 @@ export default function Page() {
                                         placeholder="..."
                                     />
                                 </div>
+                            </div>
+                            <div className="sm:col-span-4">
+                                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                                    Password
+                                </label>
+                                <div className="mt-2">
+                                    <Input
+                                        disabled
+                                        id="password"
+                                        type="password"
+                                        value="12345678"
+                                        autoComplete="on"
+                                        placeholder="..."
+                                        className="disabled:bg-gray-100"
+                                    />
+                                </div>
+                                <Link href={pageRouters.CHANGE_PASSWORD} className="text-xs mt-1 text-primary hover:opacity-60">
+                                    {' '}
+                                    Change Password
+                                </Link>
                             </div>
                             <div className="sm:col-span-4">
                                 <label

@@ -27,7 +27,16 @@ export const passwordLoginRules = (isRequired = false) => {
 };
 export const fieldRules = (isRequired = false) => {
     return {
+        ...(isRequired && { required: VALUE_REQUIRED })
+    };
+};
+export const validateRules = (isRequired = false) => {
+    return {
         ...(isRequired && { required: VALUE_REQUIRED }),
+        minLength: {
+            value: 0,
+            message: 'Số lần phải lớn hơn 0',
+        },
     };
 };
 

@@ -8,7 +8,7 @@ import { DayPicker } from 'react-day-picker';
 import SelectDoctor from '@/components/common/Selection/SelectDoctor';
 import { apiRouters, pageRouters } from '@/components/constants/router';
 import { LoadingContext } from '@/components/contexts/Loading';
-import { IDataPatient, ScheduleDoctor } from '@/interfaces/common';
+import { IDataPatient, IHistory, ScheduleDoctor } from '@/interfaces/common';
 import api from '@/services/api';
 import { formatDateTime } from '@/utils';
 import Pagination from '@/components/common/Pagination';
@@ -34,15 +34,15 @@ export default function page({}: Props) {
     } = useForm<ScheduleDoctor>();
 
     // ACTION GET ALL DOCTOR
-    const getListPatient = async (): Promise<IDataPatient[]> => {
+    const getListPatient = async (): Promise<IHistory[]> => {
         setIsLoading(true);
         const isDate = selected
             ? moment(selected).valueOf()
             : moment(new Date()).add(0, 'days').startOf('day').valueOf();
-        const { data } = await api.get(`${apiRouters.LIST_PATIENT(getValues('doctorId'), isDate, 'S2')}`);
+        const { data } = await api.get(`${apiRouters.LIST_HISTORY(getValues('doctorId'), isDate)}`);
         return data.data.data;
     };
-    const { data: ListPatient, refetch: refetchGetListPatient } = useQuery('getListPatientHistory', getListPatient, {
+    const { data: ListPatient, refetch: refetchGetListPatient } = useQuery('getListHistory', getListPatient, {
         staleTime: Infinity,
         enabled: true,
         retry: 0,
@@ -68,14 +68,18 @@ export default function page({}: Props) {
 
     return (
         <div>
-            <div className='flex justify-end'>
-              <Link className='text-primary text-right cursor-pointer hover:opacity-70 hover:text-red-400' href={pageRouters.MANAGER_CALENDAR}>Danh sách lịch khám</Link>
+            <div className="flex justify-end">
+                <Link
+                    className="text-primary text-right cursor-pointer hover:opacity-70 hover:text-red-400"
+                    href={pageRouters.MANAGER_CALENDAR}
+                >
+                    Danh sách lịch khám
+                </Link>
             </div>
             <div className=" flex justify-between">
                 <SelectDoctor register={register('doctorId')} />
                 <div className="ml-10">
                     <DayPicker
-                       
                         showOutsideDays
                         mode="single"
                         selected={selected}
@@ -86,7 +90,7 @@ export default function page({}: Props) {
             </div>
             <div>
                 <div className="mt-8 flow-root overflow-hidden">
-                    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div className=" px-4 sm:px-6 lg:px-8">
                         <table className="w-full text-left">
                             <thead className="bg-white">
                                 <tr>
@@ -97,12 +101,6 @@ export default function page({}: Props) {
                                         Full Name
                                         <div className="absolute inset-y-0 right-full -z-10 w-screen border-b border-b-gray-200" />
                                         <div className="absolute inset-y-0 left-0 -z-10 w-screen border-b border-b-gray-200" />
-                                    </th>
-                                    <th
-                                        scope="col"
-                                        className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell"
-                                    >
-                                        Time
                                     </th>
                                     <th
                                         scope="col"
@@ -131,21 +129,19 @@ export default function page({}: Props) {
                                 {ListPatient?.map((person) => (
                                     <tr key={person.id}>
                                         <td className="relative py-4 pr-3 text-sm font-medium text-gray-900">
-                                            {person.patientData.firstName}
+                                            {person.patientHistoryData.firstName}
                                             <div className="absolute bottom-0 right-full h-px w-screen bg-gray-100" />
                                             <div className="absolute bottom-0 left-0 h-px w-screen bg-gray-100" />
                                         </td>
-                                        <td className="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">
-                                            {person.timeTypeDataPatient.valueVi}
-                                        </td>
+
                                         <td className="hidden px-3 py-4 text-sm text-gray-500 md:table-cell">
-                                            {person.patientData.email}
+                                            {person.patientHistoryData.email}
                                         </td>
                                         <td className="px-3 py-4 text-sm text-gray-500">
-                                            {person.patientData.address}
+                                            {person.patientHistoryData.address}
                                         </td>
                                         <td className="px-3 py-4 text-sm text-gray-500">
-                                            {formatDateTime(person.updatedAt)}
+                                            {formatDateTime(person.createdAt)}
                                         </td>
                                         <td className="relative py-4 pl-3 text-right text-sm font-medium">
                                             <span className="text-indigo-600 cursor-pointer hover:text-indigo-900">

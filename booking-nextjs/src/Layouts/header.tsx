@@ -38,7 +38,6 @@ export default function Header({ children }: Props) {
     const { data: session } = useSession();
     const pathname = usePathname();
     const navigation = [
-        
         {
             name: 'Trang chủ',
             href: pageRouters.DASHBOARD,
@@ -48,7 +47,7 @@ export default function Header({ children }: Props) {
         {
             name: 'Người dùng',
             icon: UsersIcon,
-            current: pathname.startsWith('/system'),
+            current: pathname.startsWith('/system') && pathname !== pageRouters.DASHBOARD,
             children: [
                 {
                     name: 'Quản lí người dùng',

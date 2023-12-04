@@ -13,6 +13,7 @@ import { IDataPatient, ScheduleDoctor } from '@/interfaces/common';
 import Pagination from '@/components/common/Pagination';
 import api from '@/services/api';
 import { formatDateTime } from '@/utils';
+import ConfirmPatient from '@/components/common/Modal/ConfirmPatient';
 
 type Props = {};
 
@@ -20,6 +21,8 @@ export default function page({}: Props) {
     const { setIsLoading } = useContext(LoadingContext);
     const [selected, setSelected] = useState<Date | undefined>();
     const [isPage, setPage] = useState<number>(0);
+    const [isOpen, setOpen] = useState<boolean>(false)
+    const [isPatient, setPatient] = useState<IDataPatient>()
 
     const {
         register,
@@ -39,7 +42,7 @@ export default function page({}: Props) {
         const isDate = selected
             ? moment(selected).valueOf()
             : moment(new Date()).add(0, 'days').startOf('day').valueOf();
-        const { data } = await api.get(`${apiRouters.LIST_PATIENT(getValues('doctorId'), isDate, 'S1')}`);
+        const { data } = await api.get(`${apiRouters.LIST_PATIENT(getValues('doctorId'), isDate, 'S2')}`);
         return data.data.data;
     };
     const { data: ListPatient, refetch: refetchGetListPatient } = useQuery('getListPatient', getListPatient, {
@@ -68,8 +71,13 @@ export default function page({}: Props) {
 
     return (
         <div>
-            <div className='flex justify-end'>
-              <Link href={pageRouters.MANAGER_HISTORY} className='text-primary text-right cursor-pointer hover:opacity-70 hover:text-red-400'>Danh sách các bệnh nhân đã khám</Link>
+            <div className="flex justify-end">
+                <Link
+                    href={pageRouters.MANAGER_HISTORY}
+                    className="text-primary text-right cursor-pointer hover:opacity-70 hover:text-red-400"
+                >
+                    Danh sách các bệnh nhân đã khám
+                </Link>
             </div>
             <div className=" flex justify-between">
                 <SelectDoctor register={register('doctorId')} />
@@ -86,7 +94,7 @@ export default function page({}: Props) {
             </div>
             <div>
                 <div className="mt-8 flow-root overflow-hidden">
-                    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div className="mx-auto  px-4 sm:px-6 lg:px-8">
                         <table className="w-full text-left">
                             <thead className="bg-white">
                                 <tr>
@@ -100,13 +108,13 @@ export default function page({}: Props) {
                                     </th>
                                     <th
                                         scope="col"
-                                        className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell"
+                                        className="hidden  px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell"
                                     >
                                         Time
                                     </th>
                                     <th
                                         scope="col"
-                                        className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 md:table-cell"
+                                        className="hidden  px-3 py-3.5 text-left text-sm font-semibold text-gray-900 md:table-cell"
                                     >
                                         Email
                                     </th>
@@ -130,25 +138,29 @@ export default function page({}: Props) {
                             <tbody>
                                 {ListPatient?.map((person) => (
                                     <tr key={person.id}>
-                                        <td className="relative py-4 pr-3 text-sm font-medium text-gray-900">
+                                        <td className="relative truncate max-w-[150px] py-4 pr-3 text-sm font-medium text-gray-900">
                                             {person.patientData.firstName}
-                                            <div className="absolute bottom-0 right-full h-px w-screen bg-gray-100" />
-                                            <div className="absolute bottom-0 left-0 h-px w-screen bg-gray-100" />
                                         </td>
-                                        <td className="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">
+                                        <td className="hidden  px-3 py-4 text-sm text-gray-500 sm:table-cell">
                                             {person.timeTypeDataPatient.valueVi}
                                         </td>
-                                        <td className="hidden px-3 py-4 text-sm text-gray-500 md:table-cell">
+                                        <td className="hidden truncate px-3 py-4 text-sm text-gray-500 md:table-cell">
                                             {person.patientData.email}
                                         </td>
-                                        <td className="px-3 py-4 text-sm text-gray-500">
+                                        <td className="px-3 truncate max-w-[250px] py-4 text-sm text-gray-500">
                                             {person.patientData.address}
                                         </td>
                                         <td className="px-3 py-4 text-sm text-gray-500">
                                             {formatDateTime(person.updatedAt)}
                                         </td>
                                         <td className="relative py-4 pl-3 text-right text-sm font-medium">
-                                            <span className="text-indigo-600 cursor-pointer hover:text-indigo-900">
+                                            <span
+                                                onClick={() =>{
+                                                    setPatient(person);
+                                                    setOpen(true)}
+                                                }
+                                                className="text-indigo-600 cursor-pointer hover:text-indigo-900"
+                                            >
                                                 Confirm<span className="sr-only">, {person.id}</span>
                                             </span>
                                         </td>
@@ -160,6 +172,7 @@ export default function page({}: Props) {
                     </div>
                 </div>
             </div>
+            <ConfirmPatient isPatient={isPatient} open={isOpen} setOpen={() => setOpen(false)} />
         </div>
     );
 }

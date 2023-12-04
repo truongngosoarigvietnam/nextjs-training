@@ -27,7 +27,9 @@ export default function TopDoctor({}: Props) {
         staleTime: Infinity,
         enabled: true,
         retry: 0,
-        onSuccess: (res) => {},
+        onSuccess: (res) => {
+            setTotal(res.length)
+        },
         onError: () => {},
         onSettled: () => {
             setIsLoading(false);
@@ -128,7 +130,7 @@ export default function TopDoctor({}: Props) {
                                                 {item.firstName + item.lastName}
                                             </p>
                                             <p className="font-normal text-base text-[#626262]">
-                                                {item.DoctorInfor.specialtyData.name}{' '}
+                                                {item.DoctorInfor.specialtyData.name}
                                             </p>
                                         </Link>
                                     </div>
@@ -156,7 +158,7 @@ export default function TopDoctor({}: Props) {
                         <div
                             onClick={next}
                             className={`
-                    ${currentSlide === isTotal - 3 ? 'hidden' : ''}
+                    ${currentSlide  === isTotal - 3  ? 'hidden' : ''}
                     shadow-md right-[-10px] flex items-center justify-center transition-none duration-0 w-10 h-10 absolute top-[35%] 
   rounded-md border cursor-pointer  border-[#b5e7ed] bg-white right-full/2`}
                         >

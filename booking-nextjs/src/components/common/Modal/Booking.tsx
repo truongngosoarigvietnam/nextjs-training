@@ -5,9 +5,9 @@ import DatePicker from 'react-datepicker';
 import Image from 'next/image';
 import { useMutation, useQueryClient } from 'react-query';
 import { ToastContainer, toast } from 'react-toastify';
-
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
+
 import { AllDataDoctor, IDataBooking } from '@/interfaces/common';
 import Input from '../Input';
 import { emailRules, fieldRules, phoneNumberRules } from '@/utils/Validatetor';
@@ -76,6 +76,16 @@ export default function Index({ dataInfoDoctor, isChooseDay, open, setOpen, isSe
         },
         onError: () => {
             setIsLoading(false);
+            toast.error('You have fail scheduled your appointment Please check again', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+            });
         },
         onSettled: () => {
             setIsLoading(false);

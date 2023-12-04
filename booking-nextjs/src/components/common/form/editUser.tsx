@@ -374,7 +374,7 @@ export default function EditForm({ id }: Props) {
                     </div>
                 </form>
             </div>
-            <ToastContainer icon={false} />
+            <ToastContainer icon={true} />
         </div>
     );
 }
