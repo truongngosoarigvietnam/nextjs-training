@@ -85,7 +85,7 @@ const ConfirmPassword = ({ onClose, variant, onConfirm, open, data }: Props) => 
                     <Button
                         type="submit"
                         className="h-10 w-[7.5rem]">
-                        Delete
+                        Confirm
                     </Button>
                 </div>
             </form>

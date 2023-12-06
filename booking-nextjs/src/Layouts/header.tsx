@@ -89,13 +89,14 @@ export default function Header({ children }: Props) {
             name: 'Cẩm nang',
             href: '#',
             icon: DocumentDuplicateIcon,
-            current: false,
-            children: [{ name: 'Quản lí Cẩm nang', href: '#' }],
+            current: pageRouters.MANAGER_BLOG === pathname,
+            children: [{ name: 'Quản lí Cẩm nang', href: pageRouters.MANAGER_BLOG }],
         },
         { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
     ];
     const userNavigation = [
         { name: 'Your profile', href: `${pageRouters.PROFILE}` },
+        { name: 'Your Blogs', href: `${pageRouters.BLOGS}` },
         { name: 'Sign out', href: '#' },
     ];
     return (
@@ -462,7 +463,7 @@ export default function Header({ children }: Props) {
                                                     {({ active }) => (
                                                         <Link
                                                             href={item.href}
-                                                            className={`
+                                                            className={` hover:bg-slate-400
                                                                 block px-3 py-1 text-sm leading-6 text-gray-900 ${
                                                                     active ? 'bg-gray-50' : ''
                                                                 }`}

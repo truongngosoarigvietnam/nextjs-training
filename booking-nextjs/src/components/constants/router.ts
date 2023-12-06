@@ -2,6 +2,9 @@ export const pageRouters = {
     HOME: '/',
     LOGIN: 'auth/login',
     PROFILE: '/profile/information',
+    BLOGS: '/profile/blogs',
+    MY_BLOGS: '/profile/blogs/list-blogs',
+
     CHANGE_PASSWORD: '/profile/change-password',
     DASHBOARD: '/system',
     MANAGER_USER: '/system/user',
@@ -9,6 +12,7 @@ export const pageRouters = {
     MANAGER_DOCTOR: '/system/doctor',
     EDIT_ACCOUNT: (id: number) => `/system/account/${id}`,
     MANAGER_SCHEDULE: '/system/schedule',
+    MANAGER_BLOG: '/system/blog',
     MANAGER_CALENDAR: '/system/calendar',
     MANAGER_CLINIC: '/system/clinic',
     MANAGER_SPECIAL: '/system/special',
@@ -27,6 +31,8 @@ export const apiRouters = {
 
     CONFIRM_PASSWORD: '/confirm-password',
     CREATE_USER: '/create-new-user',
+    CREATE_BLOG: '/save-info-blogs',
+
     CREATE_CLINIC: '/create-new-clinic',
     CREATE_SPECIAL: '/create-new-specialty',
     SEND_REMEDY: 'send-remedy',
@@ -35,15 +41,18 @@ export const apiRouters = {
     DELETE_CLINIC: (id: number) => `/delete-clinic?id=${id}`,
     DELETE_SPECIAL: (id: number) => `/delete-specialty?id=${id}`,
     DETAIL_USER: (id: number) => `/get-user-detail?id=${id}`,
+    DELETE_BLOG: (id: number) => `/delete-blog?id=${id}`,
+    CONFIRM_BLOG: (id: number , value : number) => `/get-confirm-blog?id=${id}&value=${value}`,
+
     EDIT_USER: '/edit-user',
     EDIT_CLINIC: '/edit-clinic',
     EDIT_SPECIAL: '/edit-specialty',
 
     LIST_DOCTOR: '/get-all-doctors',
+    LIST_MY_BLOGS: (id: number) => `/get-list-blog?userId=${id}`,
     LIST_PATIENT: (id: number, date: number, statusId: string) =>
         `/get-list-patient-for-doctor?doctorId=${id}&date=${date}&statusId=${statusId}`,
-    LIST_HISTORY: (id: number, date: number) =>
-        `/get-history-patient-for-doctor?doctorId=${id}&date=${date}`,
+    LIST_HISTORY: (id: number, date: number) => `/get-history-patient-for-doctor?doctorId=${id}&date=${date}`,
 
     LIST_SPECIAL: '/get-all-specialty-all',
     LIST_CLINIC: '/get-all-clinic-all',

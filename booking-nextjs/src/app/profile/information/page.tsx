@@ -21,7 +21,7 @@ import { emailRules, fieldRules, phoneNumberRules } from '@/utils/Validatetor';
 
 export default function Page() {
     const { setIsLoading } = useContext(LoadingContext);
-    const { data: session } = useSession();
+    const { data: session, update: updateSession } = useSession();
     const [isCodeProvince, setCodeProvince] = useState<number>(1);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [previewImage, setPreviewImage] = useState<string | null>(null);
@@ -142,6 +142,10 @@ export default function Page() {
                 progress: undefined,
                 theme: 'light',
             });
+              await updateSession({
+                  firstName: getValues('firstName'),
+                  lastName: getValues('lastName'),
+              });
         },
         onError: () => {
             setIsLoading(false);

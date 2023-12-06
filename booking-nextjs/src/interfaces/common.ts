@@ -131,15 +131,21 @@ export interface AllDoctor extends InforDoctorData {
         valueVi: string;
     };
 }
-export interface IBlogs {
+export interface IBlogs extends IMarkdown {
     id: number;
     userId: number;
+    accept: number;
     title: string;
-    content: string;
     thumb: string;
     topic: string;
     createdAt: string;
     updatedAt: string;
+    User: {
+        firstName: string;
+        lastName: string;
+        image: string;
+        
+    };
 }
 export interface IDataBooking {
     email: string;
@@ -163,6 +169,7 @@ export interface IDataCreateClinic extends IMarkdown {
     name: string;
     address: string;
 }
+
 
 export interface IDataDoctorForSpecial extends IMarkdown {
     doctorSpecialty: {

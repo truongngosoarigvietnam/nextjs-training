@@ -52,7 +52,9 @@ export default function Form({}: Props) {
         onError: () => {
             setIsLoading(false);
         },
-        onSettled: () => {},
+        onSettled: () => {
+             setIsLoading(false);
+        },
         refetchOnMount: true,
     });
     // ACTION GET ALL DISTRICT
@@ -71,7 +73,9 @@ export default function Form({}: Props) {
         onError: () => {
             setIsLoading(false);
         },
-        onSettled: () => {},
+        onSettled: () => {
+             setIsLoading(false);
+        },
         refetchOnMount: true,
     });
     // ACTION GET ALL POSITION

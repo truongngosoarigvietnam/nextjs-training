@@ -53,9 +53,12 @@ export const options: NextAuthOptions = {
 				if (session.email) {
 					(token.profile as any).email = session.email;
 				}
-				if (session.name) {
-					(token.profile as any).name = session.name;
+				if (session.firstName) {
+                    (token.user as any).firstName = session.firstName;
 				}
+				if (session.lastName) {
+                    (token.user as any).lastName = session.lastName;
+                }
 				if (session.role_id) {
 					(token.profile as any).role_id = session.role_id;
 				}
