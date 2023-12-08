@@ -19,17 +19,16 @@ export const options: NextAuthOptions = {
 			},
 			async authorize(credentials, req) {
 				const { email, password } = credentials as any;
-				const res = await fetch(`http://localhost:8080/api/login`, {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-						
-					},
-					body: JSON.stringify({
-						email,
-						password,
-					}),
-				});
+				const res = await fetch(`https://booking-care-pn41.onrender.com/api/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email,
+                        password,
+                    }),
+                });
 
 				const user = await res.json();
 				if (user.data) {
