@@ -9,11 +9,11 @@ const withPWA = require('next-pwa')({
 
 const nextConfig = {
     images: {
-        domains: ["localhost", "res.cloudinary.com", "images.unsplash.com"],
+        domains: ['localhost', 'res.cloudinary.com', 'images.unsplash.com'],
     },
-    turbo: {
-        enabled : true 
-    }
+    cookies: {
+        sameSite: 'none',
+    },
 };
 
 module.exports = withPWA(nextConfig);

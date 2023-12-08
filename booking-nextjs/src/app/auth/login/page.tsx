@@ -50,13 +50,9 @@ export default function Page({}: Props) {
                 if (response.status === ServerStatusCode.OK) {
                     const res = await signIn('credentials', {
                         email:
-                        // getValues('email')
-                        "truong1@gmail.com"
+                            getValues('email')
                         ,
-                        password:
-                        // getValues('password')
-                        '12345678'
-                        ,
+                        password: getValues('password'),
                         rememberMe: getValues('rememberMe'),
                         redirect: false,
                         callbackUrl: '/system',
