@@ -4,8 +4,11 @@ export const pageRouters = {
     PROFILE: '/profile/information',
     BLOGS: '/profile/blogs',
     MY_BLOGS: '/profile/blogs/list-blogs',
+    ALL_BLOG: '/blog',
+    DETAIL_BLOG: (id: number) => `/blog/${id}`,
 
     CHANGE_PASSWORD: '/profile/change-password',
+    FORGOT_PASSWORD: '/auth/forgot-password',
     DASHBOARD: '/system',
     MANAGER_USER: '/system/user',
     MANAGER_ACCOUNT: '/system/account',
@@ -36,13 +39,15 @@ export const apiRouters = {
     CREATE_CLINIC: '/create-new-clinic',
     CREATE_SPECIAL: '/create-new-specialty',
     SEND_REMEDY: 'send-remedy',
+    RESET_PASSWORD: '/reset-password',
 
     DELETE_USER: (id: number) => `/delete-user?id=${id}`,
     DELETE_CLINIC: (id: number) => `/delete-clinic?id=${id}`,
     DELETE_SPECIAL: (id: number) => `/delete-specialty?id=${id}`,
     DETAIL_USER: (id: number) => `/get-user-detail?id=${id}`,
+    DETAIL_BLOG: (id: number) => `/get-blog-detail?id=${id}`,
     DELETE_BLOG: (id: number) => `/delete-blog?id=${id}`,
-    CONFIRM_BLOG: (id: number , value : number) => `/get-confirm-blog?id=${id}&value=${value}`,
+    CONFIRM_BLOG: (id: number, value: number) => `/get-confirm-blog?id=${id}&value=${value}`,
 
     EDIT_USER: '/edit-user',
     EDIT_CLINIC: '/edit-clinic',

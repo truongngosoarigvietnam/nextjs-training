@@ -3,6 +3,8 @@ import { Fragment, ReactNode, useState } from 'react';
 import { Dialog, Menu, Transition } from '@headlessui/react';
 import { usePathname } from 'next/navigation';
 import { Disclosure } from '@headlessui/react';
+import Link from 'next/link';
+import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import {
     Bars3Icon,
@@ -17,12 +19,9 @@ import {
     XMarkIcon,
 } from '@heroicons/react/24/outline';
 import { ChevronDownIcon, ChevronRightIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid';
-import Link from 'next/link';
-import { useSession } from 'next-auth/react';
 
 import NoImg from '@/components/images/no-user-image.gif';
 import { pageRouters } from '@/components/constants/router';
-
 
 const teams = [
     { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
@@ -97,8 +96,10 @@ export default function Header({ children }: Props) {
     const userNavigation = [
         { name: 'Your profile', href: `${pageRouters.PROFILE}` },
         { name: 'Your Blogs', href: `${pageRouters.BLOGS}` },
-        { name: 'Sign out', href: '#' },
     ];
+    const handleLogout = async () => {
+        const data = await signOut();
+    };
     return (
         <>
             <div>
@@ -298,9 +299,7 @@ export default function Header({ children }: Props) {
                                     <li className="!list-none">
                                         <ul role="list" className="-mx-2 space-y-1">
                                             {navigation.map((item) => (
-                                                <li
-                                                className="!list-none"
-                                                 key={item.name}>
+                                                <li className="!list-none" key={item.name}>
                                                     {!item.children ? (
                                                         <Link
                                                             href={item.href}
@@ -345,8 +344,9 @@ export default function Header({ children }: Props) {
                                                                     <Disclosure.Panel as="ul" className="mt-1 px-2">
                                                                         {item.children.map((subItem: any) => (
                                                                             <li
-                                                                            className="!list-none"
-                                                                             key={subItem.name}>
+                                                                                className="!list-none"
+                                                                                key={subItem.name}
+                                                                            >
                                                                                 {/* 44px */}
                                                                                 <Link
                                                                                     href={subItem.href}
@@ -473,6 +473,13 @@ export default function Header({ children }: Props) {
                                                     )}
                                                 </Menu.Item>
                                             ))}
+                                            <button
+                                                onClick={() => handleLogout()}
+                                                className={` hover:bg-slate-400 w-full text-start
+                                                                block px-3 py-1 text-sm leading-6 text-gray-900`}
+                                            >
+                                                Sign Out
+                                            </button>
                                         </Menu.Items>
                                     </Transition>
                                 </Menu>

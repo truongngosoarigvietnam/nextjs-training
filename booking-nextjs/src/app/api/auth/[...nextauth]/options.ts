@@ -1,11 +1,12 @@
 import { User } from '@/components/types';
-import type {  NextAuthOptions } from 'next-auth';
+import type { NextAuthOptions } from 'next-auth';
+
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 export const options: NextAuthOptions = {
 	providers: [
 		CredentialsProvider({
-			name: 'Credentials',
+			name: 'credentials',
 			credentials: {
 				email: {
 					label: 'Email',
@@ -91,7 +92,7 @@ export const options: NextAuthOptions = {
 
 	pages: {
 		signIn: '/auth/login',
-		error: '/auth/login',
+		error: '/auth/forgot-password',
 	},
 	session: {
 		strategy: 'jwt',

@@ -2,11 +2,12 @@
 import React, { useContext, useRef, useState } from 'react';
 import Slider from 'react-slick';
 import { useQuery } from 'react-query';
+import Link from 'next/link';
 import Image from 'next/image';
 import { LoadingContext } from '../contexts/Loading';
 import { IBlogs } from '@/interfaces/common';
 import api from '@/services/api';
-import { apiRouters } from '../constants/router';
+import { apiRouters, pageRouters } from '../constants/router';
 
 type Props = {};
 
@@ -89,15 +90,18 @@ export default function Blogs({}: Props) {
         <div className="w-full max-w-6xl mt-5 mb-10">
             <h2 className=" font-semibold text-2xl ">Cẩm nang</h2>
             <div className="flex justify-end">
-                <button className="text-xl hover:opacity-70 font-semibold text-[#34929e] bg-[#daf3f6] py-[10px] px-2 rounded-lg">
+                <Link
+                    href={pageRouters.ALL_BLOG}
+                    className="text-xl hover:opacity-70 font-semibold text-[#34929e] bg-[#daf3f6] py-[10px] px-2 rounded-lg"
+                >
                     Xem thêm
-                </button>
+                </Link>
             </div>
             <div className="mt-4 relative">
                 <Slider {...settings} ref={slider}>
                     {listSpecial?.map((item) => {
                         return (
-                            <div key={item.id}>
+                            <Link href={pageRouters.DETAIL_BLOG(item.id)} key={item.id}>
                                 <div className="w-[95%] flex rounded-2xl border-[2px] border-[#f1f1f1] p-5">
                                     <Image
                                         width={500}
@@ -108,7 +112,7 @@ export default function Blogs({}: Props) {
                                     />
                                     <p className="text-center mt-5 text-lg font-semibold">{item.title}</p>
                                 </div>
-                            </div>
+                            </Link>
                         );
                     })}
                 </Slider>

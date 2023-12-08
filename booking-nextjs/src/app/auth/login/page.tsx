@@ -7,13 +7,14 @@ import { signIn } from "next-auth/react";
 
 import PrimaryButton from "@/components/common/Button/PrimaryButton";
 import Input from "@/components/common/Input";
-import { apiRouters } from "@/components/constants/router";
+import { apiRouters, pageRouters } from "@/components/constants/router";
 import { LoadingContext } from "@/components/contexts/Loading";
 import { ServerStatusCode } from "@/components/constants/enum";
 import { emailRules, passwordLoginRules } from "@/utils/Validatetor";
 import api from "@/services/api";
 import { ResponseError } from "@/interfaces/response";
 import { WRONG_EMAIL, WRONG_PASSWORD } from "@/components/constants/message";
+import Link from "next/link";
 
 type Props = {};
 
@@ -47,12 +48,18 @@ export default function Page({}: Props) {
         {
             onSuccess: async (response) => {
                 if (response.status === ServerStatusCode.OK) {
-                    const res = await signIn("credentials", {
-                        email: getValues("email"),
-                        password: getValues("password"),
-                        rememberMe: getValues("rememberMe"),
+                    const res = await signIn('credentials', {
+                        email:
+                        // getValues('email')
+                        "truong1@gmail.com"
+                        ,
+                        password:
+                        // getValues('password')
+                        '12345678'
+                        ,
+                        rememberMe: getValues('rememberMe'),
                         redirect: false,
-                        callbackUrl: "/system",
+                        callbackUrl: '/system',
                     });
                     if (res?.status === ServerStatusCode.OK) {
                         router.push("/system");
@@ -85,17 +92,12 @@ export default function Page({}: Props) {
     return (
         <div className="bg-background h-[100vh]">
             <div className="sm:w-[400px] w-[350px] min-h-[400px] max-h-[450px] m-auto absolute bg-white rounded-[10px] top-0 left-0 bottom-0 right-0">
-                <form
-                    onSubmit={handleSubmit(onSubmit)}
-                    className="p-[15px] flex flex-wrap"
-                >
-                    <div className="flex-col12 w-full text-center font-semibold text-2xl pt-2.5">
-                        Login
-                    </div>
+                <form onSubmit={handleSubmit(onSubmit)} className="p-[15px] flex flex-wrap">
+                    <div className="flex-col12 w-full text-center font-semibold text-2xl pt-2.5">Login</div>
                     <div className="my-[7px] flex-col12 w-full">
                         <Input
                             error={errors.email?.message}
-                            register={register("email", emailRules(true))}
+                            register={register('email', emailRules(true))}
                             autoComplete="on"
                             label="Username"
                             placeholder="Username"
@@ -106,10 +108,7 @@ export default function Page({}: Props) {
                         <div className="relative block w-full py-[0.375rem] font-normal leading-[1.5] text-[#212529] bg-white bg-clip-padding rounded-t">
                             <Input
                                 error={errors.password?.message}
-                                register={register(
-                                    "password",
-                                    passwordLoginRules(true)
-                                )}
+                                register={register('password', passwordLoginRules(true))}
                                 type="password"
                                 label="Password"
                                 placeholder="Password"
@@ -127,20 +126,17 @@ export default function Page({}: Props) {
                         <input
                             aria-describedby="comments-description"
                             type="checkbox"
-                            {...register("rememberMe")}
+                            {...register('rememberMe')}
                             className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary "
                         />
                         Remember me
                     </div>
                     <div className="flex-col12 w-full mb-1"></div>
                     <div className="flex-col12 w-full">
-                        <a
-                            href="#"
-                            className="text-[12px] outline-none list-none hover:opacity-60"
-                        >
-                            {" "}
-                            Forgot your password{" "}
-                        </a>
+                        <Link href={pageRouters.FORGOT_PASSWORD} className="text-[12px] outline-none list-none hover:opacity-60">
+                            {' '}
+                            Forgot your password{' '}
+                        </Link>
                     </div>
                     <div className="flex-col12 w-full text-center">
                         <span className="text-center">Or Login with :</span>

@@ -16,6 +16,11 @@ export const breadcrumbsData: BreadcrumbsData = {
         name: 'Detail',
         current: false,
     },
+    [pageRouters.ALL_BLOG]: {
+        href: pageRouters.ALL_BLOG,
+        name: 'Handbooks',
+        current: false,
+    },
     [pageRouters.SPECIAL]: {
         href: pageRouters.SPECIAL,
         name: 'Specials',

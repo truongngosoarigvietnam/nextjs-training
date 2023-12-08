@@ -1,8 +1,6 @@
 import moment from 'moment';
 
-export function
-    
-    formatDateTime(timestamp: string): string {
+export function formatDateTime(timestamp: string): string {
     const date = new Date(timestamp);
 
     const year = date.getFullYear().toString();
@@ -22,17 +20,17 @@ export function formatVND(amount: number) {
 
     return formatted;
 }
- export function formatTimestamp(timestamp : number) {
-     const date = new Date(timestamp);
+export function formatTimestamp(timestamp: number) {
+    const date = new Date(timestamp);
 
-     const weekday = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'][date.getDay()];
+    const weekday = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'][date.getDay()];
 
-     const day = date.getDate();
-     const month = date.getMonth() + 1;
-     const year = date.getFullYear();
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
 
-     return `${weekday} - ${day}/${month}/${year}`;
- }
+    return `${weekday} - ${day}/${month}/${year}`;
+}
 export const getArrDays = () => {
     const capitalizeFirstLetter = (string: string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -53,7 +51,7 @@ export const getArrDays = () => {
             object.label = capitalizeFirstLetter(labelVi);
         }
 
-        object.value = moment(new Date()).add(i  , 'days').startOf('day').valueOf();
+        object.value = moment(new Date()).add(i, 'days').startOf('day').valueOf();
 
         allDays.push(object);
     }
