@@ -8,9 +8,9 @@ type Props = {};
 
 export default async function page({}: Props) {
     const session = await getServerSession();
-    if (!session || !session.user) {
-        redirect('/auth/login');
-    }
+    // if (!session || !session.user) {
+    //     redirect('/auth/login');
+    // }
     return (
         <div>
             <Dashboard />

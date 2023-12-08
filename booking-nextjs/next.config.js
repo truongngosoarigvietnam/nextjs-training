@@ -11,9 +11,6 @@ const nextConfig = {
     images: {
         domains: ['localhost', 'res.cloudinary.com', 'images.unsplash.com'],
     },
-    cookies: {
-        sameSite: 'none',
-    },
 };
 
 module.exports = withPWA(nextConfig);
