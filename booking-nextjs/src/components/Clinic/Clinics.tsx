@@ -1,12 +1,14 @@
 'use client';
 import React, { useContext, useRef, useState } from 'react';
 import Slider from 'react-slick';
+import Link from 'next/link';
 import { useQuery } from 'react-query';
 import Image from 'next/image';
+
 import { LoadingContext } from '../contexts/Loading';
+import { apiRouters, pageRouters } from '../constants/router';
 import { SpecialData } from '@/interfaces/common';
 import api from '@/services/api';
-import { apiRouters } from '../constants/router';
 
 type Props = {};
 
@@ -89,9 +91,12 @@ export default function Clinics({}: Props) {
         <div className="w-full max-w-6xl mt-5 mb-10">
             <h2 className=" font-semibold text-2xl ">Cơ sở</h2>
             <div className="flex justify-end">
-                <button className="text-xl hover:opacity-70 font-semibold text-[#34929e] bg-[#daf3f6] py-[10px] px-2 rounded-lg">
+                <Link
+                    href={pageRouters.CLINIC}
+                    className="text-xl hover:opacity-70 font-semibold text-[#34929e] bg-[#daf3f6] py-[10px] px-2 rounded-lg"
+                >
                     Xem thêm
-                </button>
+                </Link>
             </div>
             <div className="mt-4 relative">
                 <Slider {...settings} ref={slider}>

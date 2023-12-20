@@ -7,6 +7,7 @@ import { useQuery } from 'react-query';
 import { IDataDoctorForSpecial } from '@/interfaces/common';
 import DoctorSpecial from '../doctorDetail/DoctorSpecial';
 import { useParams } from 'next/navigation';
+import { MetaData } from '../MetaData/MetaData';
 
 type Props = {};
 
@@ -40,19 +41,21 @@ export default function SpecialDetail({}: Props) {
         refetchGetDoctorSpecial();
     }, [id]);
     return (
-        <div>
-            <div className="w-full max-w-6xl mx-auto mt-3 custom-scrollbar max-h-[200px] overflow-scroll">
-                {listDoctorSpecial && (
-                    <div dangerouslySetInnerHTML={{ __html: listDoctorSpecial?.descriptionMarkdown }}></div>
-                )}
-            </div>
-            <div className="w-full bg-[#EEEEEE]">
-                <div className="w-full max-w-6xl mx-auto">
-                    {listDoctorSpecial?.doctorSpecialty.map((item) => {
-                        return <DoctorSpecial key={item.doctorId} idDoctor={item.doctorId} />;
-                    })}
+        <MetaData title={`${listDoctorSpecial?.name} - BookingCare`} className={''}>
+            <div>
+                <div className="w-full max-w-6xl mx-auto mt-3 custom-scrollbar max-h-[200px] overflow-scroll">
+                    {listDoctorSpecial && (
+                        <div dangerouslySetInnerHTML={{ __html: listDoctorSpecial?.descriptionMarkdown }}></div>
+                    )}
+                </div>
+                <div className="w-full bg-[#EEEEEE]">
+                    <div className="w-full max-w-6xl mx-auto">
+                        {listDoctorSpecial?.doctorSpecialty.map((item) => {
+                            return <DoctorSpecial key={item.doctorId} idDoctor={item.doctorId} />;
+                        })}
+                    </div>
                 </div>
             </div>
-        </div>
+        </MetaData>
     );
 }

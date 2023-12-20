@@ -1,12 +1,11 @@
 'use client';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { DayPicker } from 'react-day-picker';
 import { useMutation, useQueryClient } from 'react-query';
 import { format } from 'date-fns';
 import moment from 'moment';
 import { ToastContainer, toast } from 'react-toastify';
-import SelectDoctor from '@/components/common/Selection/SelectDoctor';
 import { LoadingContext } from '@/components/contexts/Loading';
 import FormSchedule from '@/components/common/formSchedule/formSchedule';
 import { IdataTime, ScheduleDoctor } from '@/interfaces/common';
@@ -14,6 +13,7 @@ import api from '@/services/api';
 import { apiRouters } from '@/components/constants/router';
 import DemoDoctor from '@/components/common/DemoDoctor/DemoDoctor';
 import DetailSchedule from '@/components/common/Schedule/DetailSchedule';
+import { useSession } from 'next-auth/react';
 import { MetaData } from '@/components/MetaData/MetaData';
 
 type Props = {};
@@ -21,6 +21,8 @@ type Props = {};
 export default function Schedule({}: Props) {
     const { setIsLoading } = useContext(LoadingContext);
     const [dataTime, setDataTime] = useState<IdataTime[]>();
+    const { data: session } = useSession();
+
     const queryClient = useQueryClient();
 
     const {
@@ -84,6 +86,11 @@ export default function Schedule({}: Props) {
             },
         },
     );
+    useEffect(() => {
+        if (session?.user.id) {
+            setValue('doctorId', session.user.id);
+        }
+    }, [session?.user.id]);
     const onSubmit: SubmitHandler<ScheduleDoctor> = (data) => {
         if (!data.doctorId) {
             toast.error('Please select the doctor you need to schedule !', {
@@ -123,12 +130,11 @@ export default function Schedule({}: Props) {
         userCreateScheduleRequest(newDate);
     };
     return (
-        <MetaData title={'Manager Schedule - BookingCare'} className={''}>
+        <MetaData title={'My Schedule - BookingCare'} className={''}>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <p>Schedule</p>
+                <p>MY SCHEDULE</p>
                 <div className=" mt-10 max-w-7xl flex gap-32">
                     <div>
-                        <SelectDoctor register={register('doctorId')} />
                         <div className="ml-10">
                             <DayPicker
                                 disabled={(date) => date < new Date()}
@@ -141,7 +147,7 @@ export default function Schedule({}: Props) {
                         </div>
                     </div>
                     <div className="w-full">
-                        <DemoDoctor getValues={getValues} watch={watch} />
+                        {getValues('doctorId') && <DemoDoctor getValues={getValues} watch={watch} />}
                     </div>
                 </div>
                 <div>
@@ -154,7 +160,7 @@ export default function Schedule({}: Props) {
                     Save
                 </button>
                 <div className="mt-10">
-                    <DetailSchedule getValues={getValues} watch={watch} />
+                    {getValues('doctorId') && <DetailSchedule getValues={getValues} watch={watch} />}
                 </div>
                 <ToastContainer icon={true} />
             </form>

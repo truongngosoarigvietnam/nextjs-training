@@ -7,7 +7,7 @@ type Props = {};
 
 export default async function page({}: Props) {
     return (
-        <MetaData title={'System - BookingCare'} className={''}>
+        <MetaData title={'Dashboard - BookingCare'} className={''}>
             <div>
                 <Dashboard />
                 <ToastContainer icon={true} />

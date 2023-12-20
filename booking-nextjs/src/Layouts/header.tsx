@@ -13,15 +13,22 @@ import {
     ChartPieIcon,
     Cog6ToothIcon,
     DocumentDuplicateIcon,
+    IdentificationIcon,
+    CalendarDaysIcon,
     FolderIcon,
     HomeIcon,
     UsersIcon,
     XMarkIcon,
+    ClipboardIcon ,
+    ClipboardDocumentIcon
+
+,
 } from '@heroicons/react/24/outline';
 import { ChevronDownIcon, ChevronRightIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 
 import NoImg from '@/components/images/no-user-image.gif';
 import { pageRouters } from '@/components/constants/router';
+import { StatusComponent } from '@/components/constants/enum';
 
 const teams = [
     { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
@@ -36,7 +43,8 @@ export default function Header({ children }: Props) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const { data: session } = useSession();
     const pathname = usePathname();
-    const navigation = [
+
+    const ADMIN_ROLE = [
         {
             name: 'Trang chủ',
             href: pageRouters.DASHBOARD,
@@ -93,6 +101,48 @@ export default function Header({ children }: Props) {
         },
         { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
     ];
+
+    const DOCTOR_ROLE = [
+        {
+            name: 'Trang chủ',
+            href: pageRouters.MY_DASHBOAD,
+            icon: HomeIcon,
+            current: pageRouters.MY_DASHBOAD === pathname,
+        },
+        {
+            name: 'Thông Tin',
+            href: '#',
+            icon: IdentificationIcon,
+            current: false,
+            children: [
+                {
+                    name: 'Lý lịch bác sĩ',
+                    href: pageRouters.MY_DOCTOR,
+                    current: pageRouters.MY_DOCTOR === pathname,
+                },
+            ],
+        },
+        {
+            name: 'Kế hoạch khám',
+            href: pageRouters.MY_SCHEDULE,
+            icon: CalendarDaysIcon,
+            current: pageRouters.MY_SCHEDULE === pathname,
+        },
+        {
+            name: 'Danh sách khám',
+            href: pageRouters.MY_PATIENT,
+            icon: ClipboardIcon,
+            current: pageRouters.MY_PATIENT === pathname,
+        },
+        {
+            name: 'Lịch sử khám',
+            href: pageRouters.MANAGER_HISTORY,
+            icon: ClipboardDocumentIcon,
+            current: pageRouters.MANAGER_HISTORY === pathname,
+        },
+    ];
+
+    const navigation = session?.user.roleId === StatusComponent.ADMIN ? ADMIN_ROLE : DOCTOR_ROLE;
     const userNavigation = [
         { name: 'Your profile', href: `${pageRouters.PROFILE}` },
         { name: 'Your Blogs', href: `${pageRouters.BLOGS}` },

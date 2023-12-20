@@ -99,22 +99,24 @@ export default function Blogs({}: Props) {
             </div>
             <div className="mt-4 relative">
                 <Slider {...settings} ref={slider}>
-                    {listSpecial?.map((item) => {
-                        return (
-                            <Link href={pageRouters.DETAIL_BLOG(item.id)} key={item.id}>
-                                <div className="w-[95%] flex rounded-2xl border-[2px] border-[#f1f1f1] p-5">
-                                    <Image
-                                        width={500}
-                                        height={500}
-                                        className="w-full max-w-[60%] h-[200px] object-cover rounded-2xl"
-                                        src={item.thumb}
-                                        alt={item.id + 'special'}
-                                    />
-                                    <p className="text-center mt-5 text-lg font-semibold">{item.title}</p>
-                                </div>
-                            </Link>
-                        );
-                    })}
+                    {listSpecial
+                        ?.filter((blog) => blog.accept === 1)
+                        .map((item) => {
+                            return (
+                                <Link href={pageRouters.DETAIL_BLOG(item.id)} key={item.id}>
+                                    <div className="w-[95%] flex rounded-2xl border-[2px] border-[#f1f1f1] p-5">
+                                        <Image
+                                            width={500}
+                                            height={500}
+                                            className="w-full max-w-[60%] h-[200px] object-cover rounded-2xl"
+                                            src={item.thumb}
+                                            alt={item.id + 'special'}
+                                        />
+                                        <p className="text-center mt-5 text-lg font-semibold">{item.title}</p>
+                                    </div>
+                                </Link>
+                            );
+                        })}
                 </Slider>
                 <div
                     onClick={Prev}

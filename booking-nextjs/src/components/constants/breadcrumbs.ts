@@ -26,4 +26,9 @@ export const breadcrumbsData: BreadcrumbsData = {
         name: 'Specials',
         current: false,
     },
+    [pageRouters.CLINIC]: {
+        href: pageRouters.CLINIC,
+        name: 'Clinic',
+        current: false,
+    },
 };

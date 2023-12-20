@@ -11,9 +11,9 @@ const inter = Inter({ subsets: ['latin'] });
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
     const session = await getServerSession(options);
 
-    if (!session || !session.user || session.user.roleId !== StatusComponent.ADMIN) {
+    if (!session || !session.user || session.user.roleId !== StatusComponent.DOCTOR) {
         redirect('/auth/login');
-    } 
+    }
 
     return (
         <html lang="en">

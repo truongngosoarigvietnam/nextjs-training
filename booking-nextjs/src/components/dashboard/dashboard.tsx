@@ -3,44 +3,6 @@ import React from "react";
 type Props = {};
 
 export default function Dashboard({}: Props) {
-    const doctors = [
-        {
-            name: "Sally Quinn",
-            detail: "Human Resources Assistant",
-            email: "eebsworth2m@sbwire.com",
-            date: "09/27/2018",
-            age: "27",
-            status: "Professional",
-            wage: "$1720",
-        },
-        {
-            name: "Margaret Bowers",
-            detail: "Nuclear Power Engineer",
-            email: "kocrevy0@thetimes.co.uk",
-            age: "61",
-            date: "09/23/2016",
-            status: "Current",
-            wage: "$1220",
-        },
-        {
-            name: "Minnie Roy",
-            detail: "Environmental Specialist",
-            email: "ediehn6@163.com",
-            age: "41",
-            date: "10/15/2017",
-            status: "Professional",
-            wage: "$2720",
-        },
-        {
-            name: "Ralph Leonard",
-            detail: "Sales Representative",
-            email: "dfalloona@ifeng.com",
-            age: "41",
-            date: "1/15/2018",
-            status: "Current",
-            wage: "$3720",
-        },
-    ];
     return (
         <div>
             <div className="w-full md:p-[1rem]">
@@ -48,9 +10,7 @@ export default function Dashboard({}: Props) {
                     <div className="min-h-[40rem] grid xl:grid-cols-3 gap-4">
                         <div className="text-center p-1 md:p-8 bg-white rounded-lg border border-gray-300 shadow-md ">
                             <div className="flex items-center justify-center">
-                                <h5 className="text-2.5xl font-light">
-                                    Weekly Overview
-                                </h5>
+                                <h5 className="text-2.5xl font-light">Weekly Overview</h5>
                                 <div className="relative cursor-pointer rounded-full transition-all duration-500 ease-linear p-1 xl:p-8 flex items-center justify-center"></div>
                             </div>
                             <div className="flex  justify-center flex-col items-stretch pt-12 relative">
@@ -80,7 +40,7 @@ export default function Dashboard({}: Props) {
                                     </div>
                                     <div className="h-[80%] relative self-end w-8  text-white text-center bg-purple-600 bg-opacity-85 rounded-2xl cursor-pointer">
                                         <span className="hidden absolute top-0 left-0 w-max bg-gray-100 text-gray-700 p-4 rounded-lg z-10">
-                                            {" "}
+                                            {' '}
                                             Mon / 79k
                                         </span>
                                     </div>
@@ -108,24 +68,17 @@ export default function Dashboard({}: Props) {
                             </div>
                             <div className="py-8 flex items-center justify-between gap-4">
                                 <span>33%</span>
-                                <p>
-                                    Your sales performance is 33% 😎 better
-                                    compared to last month
-                                </p>
+                                <p>Your sales performance is 33% 😎 better compared to last month</p>
                             </div>
                             <button className="button">Details</button>
                         </div>
                         <div className="item2 p-8 bg-white rounded-lg border border-gray-300 shadow-md text-center">
                             <div className="flex items-center justify-center">
-                                <h5 className="text-2.5xl font-light">
-                                    Total Earning
-                                </h5>
+                                <h5 className="text-2.5xl font-light">Total Earning</h5>
                                 <div className="relative cursor-pointer rounded-full transition-all duration-500 ease-linear p-8 flex items-center justify-center"></div>
                             </div>
                             <div className="py-8 pb-4 flex items-center justify-between gap-4">
-                                <h3 className="text-3xl font-semibold text-gray-700">
-                                    $24,895
-                                </h3>
+                                <h3 className="text-3xl font-semibold text-gray-700">$24,895</h3>
 
                                 <span>10%</span>
                             </div>
@@ -140,8 +93,8 @@ export default function Dashboard({}: Props) {
                                         />
                                     </div>
                                     <div className="flex-grow">
-                                        <h5>Zipcar</h5>
-                                        <span>Vuejs, React & HTML</span>
+                                        <h5 className="font-bold text-sm">Sum of the most recent months</h5>
+                                        <span>9 , 10 , 11</span>
                                     </div>
                                     <div>
                                         <span>$24,895.65</span>
@@ -156,8 +109,8 @@ export default function Dashboard({}: Props) {
                                         />
                                     </div>
                                     <div className="flex-grow">
-                                        <h5>Bitbank</h5>
-                                        <span>Sketch, Figma & XD</span>
+                                        <h5>Highest month</h5>
+                                        <span>5 - 2023</span>
                                     </div>
                                     <div>
                                         <span>$4,895.65</span>
@@ -171,8 +124,8 @@ export default function Dashboard({}: Props) {
                                         />
                                     </div>
                                     <div className="info">
-                                        <h5>Aviato</h5>
-                                        <span> HTML & Angular</span>
+                                        <h5>From the start month </h5>
+                                        <span> 19</span>
                                     </div>
                                     <div>
                                         <span>$24,895.65</span>

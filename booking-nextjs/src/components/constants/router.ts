@@ -6,6 +6,11 @@ export const pageRouters = {
     MY_BLOGS: '/profile/blogs/list-blogs',
     ALL_BLOG: '/blog',
     DETAIL_BLOG: (id: number) => `/blog/${id}`,
+    MY_DOCTOR: '/doctor-manager',
+    MY_DASHBOAD: '/doctor-manager/dashboad',
+    MY_SCHEDULE: '/doctor-manager/schedule',
+    MY_PATIENT: '/doctor-manager/patient',
+    MY_HISTORY: '/doctor-manager/history',
 
     CHANGE_PASSWORD: '/profile/change-password',
     FORGOT_PASSWORD: '/auth/forgot-password',
@@ -22,7 +27,9 @@ export const pageRouters = {
     MANAGER_HISTORY: '/system/calendar/patient',
     DOCTOR: '/doctor',
     DOCTOR_DETAIL: (id: string) => `/doctor/detail/${id}`,
+    DOCTOR_CLINIC: (id: string) => `/system/clinic/${id}`,
     SPECIAL: '/special',
+    CLINIC: '/clinic',
     SPECIAL_DETAIL: (id: number) => `/special/detail/${id}`,
 };
 export const apiRouters = {
@@ -63,6 +70,8 @@ export const apiRouters = {
     LIST_CLINIC: '/get-all-clinic-all',
     LIST_BLOG: '/get-all-blog',
     DETAIL_DOCTOR: (id: number | undefined) => `/get-detail-doctor-by-id?id=${id}`,
+
+    DOCTOR_CLINIC: (id: number) => `get-doctor-by-clinic?clinicId=${id}`,
     SAVE_INFO: '/save-info-doctors',
     SAVE_SCHEDULE: '/bulk-create-schedule',
     DETAIL_SCHEDULE_DOCTOR: (doctorId: number, date: number) =>

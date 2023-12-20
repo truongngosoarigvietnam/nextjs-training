@@ -131,6 +131,15 @@ export interface AllDoctor extends InforDoctorData {
         valueVi: string;
     };
 }
+
+export interface IDoctorClinics {
+    id: number;
+    specialtyId: number;
+    nameClinic: string;
+    User: UserList;
+}
+
+
 export interface IBlogs extends IMarkdown {
     id: number;
     userId: number;
@@ -172,6 +181,7 @@ export interface IDataCreateClinic extends IMarkdown {
 
 
 export interface IDataDoctorForSpecial extends IMarkdown {
+    name?: string;
     doctorSpecialty: {
         doctorId: number;
     }[];

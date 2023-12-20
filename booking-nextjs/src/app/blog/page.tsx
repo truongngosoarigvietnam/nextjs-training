@@ -47,9 +47,12 @@ export default function Page({}: Props) {
                         return (
                             <div
                                 key={item.id}
-                                className="border-solid hover:opacity-60 border-2 border-[#e8e8e8] rounded-xl mb-5"
+                                className={`${item.accept === 0 && 'hidden'} border-solid hover:opacity-60 border-2 border-[#e8e8e8] rounded-xl mb-5`}
                             >
-                                <Link href={pageRouters.DETAIL_BLOG(item.id)} className="p-10 mt-3 cursor-pointer block">
+                                <Link
+                                    href={pageRouters.DETAIL_BLOG(item.id)}
+                                    className="p-10 mt-3 cursor-pointer block"
+                                >
                                     <div className="flex justify-between mb-5">
                                         <div className="left flex">
                                             <img

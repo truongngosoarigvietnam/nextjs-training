@@ -1,20 +1,20 @@
-"use client";
-import React, { useContext } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
-import { useMutation } from "react-query";
-import { signIn } from "next-auth/react";
+'use client';
+import React, { useContext } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
+import { useMutation } from 'react-query';
+import { signIn, useSession } from 'next-auth/react';
 
-import PrimaryButton from "@/components/common/Button/PrimaryButton";
-import Input from "@/components/common/Input";
-import { apiRouters, pageRouters } from "@/components/constants/router";
-import { LoadingContext } from "@/components/contexts/Loading";
-import { ServerStatusCode } from "@/components/constants/enum";
-import { emailRules, passwordLoginRules } from "@/utils/Validatetor";
-import api from "@/services/api";
-import { ResponseError } from "@/interfaces/response";
-import { WRONG_EMAIL, WRONG_PASSWORD } from "@/components/constants/message";
-import Link from "next/link";
+import PrimaryButton from '@/components/common/Button/PrimaryButton';
+import Input from '@/components/common/Input';
+import { apiRouters, pageRouters } from '@/components/constants/router';
+import { LoadingContext } from '@/components/contexts/Loading';
+import { ServerStatusCode } from '@/components/constants/enum';
+import { emailRules, passwordLoginRules } from '@/utils/Validatetor';
+import api from '@/services/api';
+import { ResponseError } from '@/interfaces/response';
+import { WRONG_EMAIL, WRONG_PASSWORD } from '@/components/constants/message';
+import Link from 'next/link';
 
 type Props = {};
 
@@ -26,6 +26,8 @@ type LoginFormInputs = {
 export default function Page({}: Props) {
     const { setIsLoading } = useContext(LoadingContext);
     const router = useRouter();
+    const { data: session } = useSession();
+
     const {
         register,
         handleSubmit,
@@ -42,45 +44,45 @@ export default function Page({}: Props) {
         setIsLoading(true);
         return await api.post(apiRouters.USER_LOGIN, data);
     };
-    const { mutate: userLoginRequest, isLoading } = useMutation(
-        "userLoginRequest",
-        userCreateLogin,
-        {
-            onSuccess: async (response) => {
-                if (response.status === ServerStatusCode.OK) {
-                    const res = await signIn('credentials', {
-                        email:
-                            getValues('email')
-                        ,
-                        password: getValues('password'),
-                        rememberMe: getValues('rememberMe'),
-                        redirect: false,
-                        callbackUrl: '/system',
-                    });
-                    if (res?.status === ServerStatusCode.OK) {
-                        router.push("/system");
+    const { mutate: userLoginRequest, isLoading } = useMutation('userLoginRequest', userCreateLogin, {
+        onSuccess: async (response) => {
+            if (response.status === ServerStatusCode.OK) {
+                const res = await signIn('credentials', {
+                    email: getValues('email'),
+                    password: getValues('password'),
+                    rememberMe: getValues('rememberMe'),
+                    redirect: false,
+                    callbackUrl: '/system',
+                });
+                if (res?.status === ServerStatusCode.OK) {
+                    if (session?.user.roleId === 'R2') {
+                        router.push('/doctor-manager/dashboad');
                     }
+                    else { 
+                        router.push('/system');
+                    }  
+                   
                 }
-            },
-            onError: ({ response }: ResponseError<any>) => {
-                if (response?.status === ServerStatusCode.UNAUTHORIZED) {
-                    setError("password", {
-                        type: "validate",
-                        message: WRONG_PASSWORD,
-                    });
-                }
-                if (response?.status === ServerStatusCode.BAD_REQUEST) {
-                    setError("email", {
-                        type: "validate",
-                        message: WRONG_EMAIL,
-                    });
-                }
-            },
-            onSettled: () => {
-                setIsLoading(false);
-            },
-        }
-    );
+            }
+        },
+        onError: ({ response }: ResponseError<any>) => {
+            if (response?.status === ServerStatusCode.UNAUTHORIZED) {
+                setError('password', {
+                    type: 'validate',
+                    message: WRONG_PASSWORD,
+                });
+            }
+            if (response?.status === ServerStatusCode.BAD_REQUEST) {
+                setError('email', {
+                    type: 'validate',
+                    message: WRONG_EMAIL,
+                });
+            }
+        },
+        onSettled: () => {
+            setIsLoading(false);
+        },
+    });
     const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
         userLoginRequest(data);
     };
@@ -129,7 +131,10 @@ export default function Page({}: Props) {
                     </div>
                     <div className="flex-col12 w-full mb-1"></div>
                     <div className="flex-col12 w-full">
-                        <Link href={pageRouters.FORGOT_PASSWORD} className="text-[12px] outline-none list-none hover:opacity-60">
+                        <Link
+                            href={pageRouters.FORGOT_PASSWORD}
+                            className="text-[12px] outline-none list-none hover:opacity-60"
+                        >
                             {' '}
                             Forgot your password{' '}
                         </Link>

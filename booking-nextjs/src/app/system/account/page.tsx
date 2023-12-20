@@ -7,12 +7,13 @@ import Table from '@/components/common/Table';
 import Pagination from '@/components/common/Pagination';
 import { LoadingContext } from '@/components/contexts/Loading';
 import { apiRouters } from '@/components/constants/router';
+import { MetaData } from '@/components/MetaData/MetaData';
 import { UserRes } from '@/interfaces/common';
 import api from '@/services/api';
 
 type Props = {};
 
-export default function Page ({}: Props) {
+export default function Page({}: Props) {
     const { setIsLoading } = useContext(LoadingContext);
     const queryClient = useQueryClient();
 
@@ -79,16 +80,18 @@ export default function Page ({}: Props) {
         userDeleteRequest(id);
     };
     return (
-        <div>
-            <Form />
-            <Table handleDeleteUser={handleDeleteUser} listUsers={listUsers ? listUsers.users.data : []} />
-            <Pagination
-                isPage={isPage}
-                handleNextPage={handleNextPage}
-                handlePrevPage={handlePrevPage}
-                totalPage={listUsers?.users.totalPages ? listUsers?.users.totalPages : 0}
-            />
-            <ToastContainer icon={false} />
-        </div>
+        <MetaData title={'Manager Account - BookingCare'} className={''}>
+            <div>
+                <Form />
+                <Table handleDeleteUser={handleDeleteUser} listUsers={listUsers ? listUsers.users.data : []} />
+                <Pagination
+                    isPage={isPage}
+                    handleNextPage={handleNextPage}
+                    handlePrevPage={handlePrevPage}
+                    totalPage={listUsers?.users.totalPages ? listUsers?.users.totalPages : 0}
+                />
+                <ToastContainer icon={false} />
+            </div>
+        </MetaData>
     );
 }

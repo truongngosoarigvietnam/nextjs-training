@@ -1,12 +1,15 @@
-import TableClinic from '@/components/Clinic/TableClinic'
-import React from 'react'
+import TableClinic from '@/components/Clinic/TableClinic';
+import { MetaData } from '@/components/MetaData/MetaData';
+import React from 'react';
 
-type Props = {}
+type Props = {};
 
 export default function page({}: Props) {
-  return (
-      <div>
-          <TableClinic />
-    </div>
-  )
+    return (
+        <MetaData title={'Manager Clinic - BookingCare'} className={''}>
+            <div>
+                <TableClinic />
+            </div>
+        </MetaData>
+    );
 }

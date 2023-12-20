@@ -12,14 +12,14 @@ import MarkdownForm from '@/components/common/Markdown/MarkdowForm';
 import Upload from '@/components/common/Upload';
 import { LoadingContext } from '@/components/contexts/Loading';
 import { apiRouters, pageRouters } from '@/components/constants/router';
+import { MetaData } from '@/components/MetaData/MetaData';
 import { IBlogs } from '@/interfaces/common';
 import { fieldRules } from '@/utils/Validatetor';
 import api from '@/services/api';
 
 type Props = {};
 
-export default function Page({ }: Props) {
-    
+export default function Page({}: Props) {
     const { data: session } = useSession();
     const { setIsLoading } = useContext(LoadingContext);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -76,57 +76,59 @@ export default function Page({ }: Props) {
         if (selectedFile) {
             newData.append('image', selectedFile);
         }
-        userCreateBlogRequest(newData)
+        userCreateBlogRequest(newData);
     };
 
     return (
-        <div>
-            <div className="text-xl font-bold flex justify-center mb-5">
-                <h4>Create new handbook</h4>
-            </div>
-
-            <div className="text-sm hover:opacity-60 text-primary font-bold flex justify-end mb-5">
-                <Link href={pageRouters.MY_BLOGS}>list of your handbooks</Link>
-            </div>
-
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <Input
-                    label="Title"
-                    register={register('title', fieldRules(true))}
-                    error={errors.title?.message}
-                    autoComplete="on"
-                    placeholder="Bệnh gout ...."
-                    className="!w-1/2"
-                />
-                <Input
-                    label="Topic"
-                    register={register('topic', fieldRules(true))}
-                    error={errors.topic?.message}
-                    autoComplete="on"
-                    placeholder="Sống khoẻ "
-                    className=""
-                    labelName="mt-3"
-                />
-
-                <div className="mt-3">
-                    <label className="mb-1 block font-normal text-sm text-[#374151] ">Content</label>
-
-                    <MarkdownForm getValues={getValues} setValue={setValue} />
+        <MetaData title={'Hanbook - BookingCare'} className={''}>
+            <div>
+                <div className="text-xl font-bold flex justify-center mb-5">
+                    <h4>Create new handbook</h4>
                 </div>
-                <div>
-                    <Upload
-                        previewImage={previewImage}
-                        setPreviewImage={setPreviewImage}
-                        setSelectedFile={setSelectedFile}
+
+                <div className="text-sm hover:opacity-60 text-primary font-bold flex justify-end mb-5">
+                    <Link href={pageRouters.MY_BLOGS}>list of your handbooks</Link>
+                </div>
+
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <Input
+                        label="Title"
+                        register={register('title', fieldRules(true))}
+                        error={errors.title?.message}
+                        autoComplete="on"
+                        placeholder="Bệnh gout ...."
+                        className="!w-1/2"
                     />
-                </div>
-                <div className="flex justify-end">
-                    <PrimaryButton type="submit" className="px-3 rounded-md hover:opacity-70">
-                        Save
-                    </PrimaryButton>
-                </div>
-            </form>
-            <ToastContainer icon={true} />
-        </div>
+                    <Input
+                        label="Topic"
+                        register={register('topic', fieldRules(true))}
+                        error={errors.topic?.message}
+                        autoComplete="on"
+                        placeholder="Sống khoẻ "
+                        className=""
+                        labelName="mt-3"
+                    />
+
+                    <div className="mt-3">
+                        <label className="mb-1 block font-normal text-sm text-[#374151] ">Content</label>
+
+                        <MarkdownForm getValues={getValues} setValue={setValue} />
+                    </div>
+                    <div>
+                        <Upload
+                            previewImage={previewImage}
+                            setPreviewImage={setPreviewImage}
+                            setSelectedFile={setSelectedFile}
+                        />
+                    </div>
+                    <div className="flex justify-end">
+                        <PrimaryButton type="submit" className="px-3 rounded-md hover:opacity-70">
+                            Save
+                        </PrimaryButton>
+                    </div>
+                </form>
+                <ToastContainer icon={true} />
+            </div>
+        </MetaData>
     );
 }

@@ -7,9 +7,10 @@ import { toast } from 'react-toastify';
 import { LoadingContext } from '../contexts/Loading';
 import { SpecialData } from '@/interfaces/common';
 import api from '@/services/api';
-import { apiRouters } from '../constants/router';
+import { apiRouters, pageRouters } from '../constants/router';
 import { formatDateTime } from '@/utils';
 import CreateClinic from '../common/Modal/CreateClinic';
+import Link from 'next/link';
 
 export default function TableClinic() {
     const { setIsLoading } = useContext(LoadingContext);
@@ -142,6 +143,9 @@ export default function TableClinic() {
                                                     >
                                                         Delete
                                                     </p>
+                                                    <Link className="hover:text-green-500" href={pageRouters.DOCTOR_CLINIC(`${item.id}`)} >
+                                                        Detail
+                                                    </Link>
                                                 </div>
                                             </td>
                                         </tr>
